@@ -1,0 +1,121 @@
+:root {
+  --color-main: #71c6dd;
+  --color-main-light: #e1f6fb;
+  --color-dark: #3f4156;
+  --color-dark-medium: #51546e;
+  --color-dark-light: #696d97;
+  --color-light: #e5e5e5;
+  --color-gray: #8b8b8b;
+  --color-light-gray: #b2bdbd;
+  --color-bg: #2d2d39;
+  --color-success: #5dd693;
+  --color-error: #fc4b0b;
+}
+
+body {
+  color: var(--color-light-gray);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+a {
+  display: inline-block;
+  color: var(--color-main);
+  text-decoration: none;
+}
+
+/***NAV BAR ***/
+
+.navbar {
+  margin-bottom: 200px;
+}
+
+.content {
+  padding-top: 100px;
+}
+
+.profile-pic {
+  width: 50px;
+  height: auto;
+  border-radius: 50%;
+}
+
+/** TOPICS SECTION */
+.topics-header {
+  margin-bottom: 2rem;
+}
+
+.topics-header h4 {
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--color-dark-light);
+}
+
+.room-form {
+  width: 70%;
+  margin-bottom: 10px;
+}
+
+.room-list-container,
+.activity-container,
+.topic-container {
+  background-color: var(--color-dark);
+}
+
+.logo {
+  font-size: 25px;
+}
+
+.logo::before {
+  position: absolute;
+  content: "";
+  width: 50%;
+  background: #ababab;
+  height: 3px;
+  width: 50px;
+}
+
+/** ACTIVITIES **/
+
+.activities-header h3 {
+  background-color: var(--color-dark-light);
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+  color: var(--color-light);
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  border-radius: 5px 5px 0 0;
+}
+
+.activity-message {
+  background-color: var(--color-bg);
+}
+
+.activity-conainer {
+  background-color: var(--color-dark);
+}
+
+/** UPDATE ROOM */
+
+.update-room-form input {
+  background-color: #3f4156;
+}
+
+.update-room-form input,
+.update-room-form textarea,
+.update-room-form select {
+  background: #64646f;
+  border: 1px solid var(--color-dark-light);
+  border-radius: 3px;
+  color: var(--color-light);
+  margin-bottom: 10px;
+}
+
+/** CREATE ROOM **/
+.create-room {
+  color: var(--color-light);
+  border: 1px solid var(--color-gray);
+  margin-left: 295px;
+}
