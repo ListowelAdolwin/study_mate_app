@@ -1,0 +1,41 @@
+{% load static %}
+
+<div class="">
+    <div class="activities-header">
+        <h3>
+            Recent Activities
+        </h3>
+    </div>
+    <!--Display recent activities at the home page-->
+    <div class="recent-container">
+        {% for message in recent_messages %}
+
+        <div class='activity-container p-2 card'>
+            <small>
+                <img class="profile-pic" src="{% static 'images/pf5.jpg' %}" alt="profile pic">
+                <a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a> &nbsp;
+                {{message.updated|timesince}} ago
+                {% if message.user == request.user %}
+                <a href="{% url 'delete-message' message.id %}"><i class="bi bi-trash float-end ms-4"></i></a>
+                {% endif %}
+            </small>
+            <small class="my-2">replied to <a href="{% url 'room' message.room.id %}">{{message.room}}</a></small>
+            <div class="container activity-message ms-1 p-3 text-light card">
+                {{message}}
+            </div>
+
+            <!--message owners should be able to delete their messages from the 'recent activities'-->
+            {% if message.user == request.user %}
+<!--             <div>
+                <a href="{% url 'delete-message' message.id %}"><i class="bi bi-trash"></i></a>
+            </div> -->
+            {% endif %}
+            <hr>
+        </div>
+        <br>
+
+        {% endfor %}
+
+    </div>
+
+</div>

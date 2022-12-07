@@ -1,0 +1,97 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<style>
+    .mydiv {
+        height: 100vh;
+        overflow-y: scroll;
+        background-color: #3f4156;
+    }
+
+</style>
+
+{% load static %}
+
+<div class="room-wrapper mx-5 row justify-content-between">
+    <div class="col-9 mydiv p-5 card">
+        <div>
+            {% if rooms.host == request.user %}
+            <div class="float-end">
+                <a href="{% url 'update_room' rooms.id %}"><span><i class="bi bi-pencil"></i></span></a>
+                &nbsp; &nbsp;
+                <a href="{% url 'delete-room' rooms.id %}"><span><i class="bi bi-trash"></i></span></a>
+            </div>
+            {% endif %}
+            <div>
+                <h1>{{rooms.name}}</h1>
+                <h6>Hosted by</h6>
+                <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                <a href="{% url 'user-profile' rooms.host.id %}">@{{rooms.host}}</a>
+            </div>
+
+            <div class="container mt-3">
+                {{rooms.description}}
+            </div>
+            <br>
+            <p class="ms-2">
+                {{rooms.topic}}
+            </p>
+        </div>
+        <hr>
+        <br>
+
+        <div class="messages-wrapper bg-dark p-3">
+            <h2>Conversation</h2>
+            {% for message in room_messages %}
+            <div>
+
+                <small>
+                    <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                    <a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>
+                    &nbsp;&nbsp; {{message.updated|timesince}} ago
+                </small>
+                <p class="mt-3 ms-3">{{message.body}}</p>
+                {% if message.user == request.user %}
+                <div>
+                    <a href="{% url 'delete-message' message.id %}"><i class="bi bi-trash ms-3"></i></a>
+                </div>
+                {% endif %}
+
+            </div>
+            <hr>
+            {% endfor %}
+
+
+            <!--WRITE MESSAGE-->
+            {% if request.user.is_authenticated %}
+            <div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <input style="height:80px;font-size:14pt;" class="form-control" name="body" cols="50" rows="4" type="text"
+                        placeholder="Write your message here"></input>
+                    <button class="btn btn-secondary mt-2" type="submit"><i class="bi bi-send-fill"></i></button>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-3 mydiv">
+        <h2>Participants</h2>
+        <small>
+            {{participants.count}} joined
+        </small>
+        <hr>
+
+        {% for participant in participants %}
+        <div>
+            <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+            <a href="{% url 'user-profile' participant.id %}">@{{participant.username}}</a>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

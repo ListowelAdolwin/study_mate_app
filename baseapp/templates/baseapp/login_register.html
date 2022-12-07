@@ -1,0 +1,98 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+<br>
+<!--Login form-->
+{% if page == 'login' %}
+<div class="container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="col-sm-10 mb-4">
+            <input type="text" name="username" placeholder="Enter your username" class="form-control">
+        </div>
+        <div class="col-sm-10 mb-4">
+            <input type="password" name="password" placeholder="Enter your password" class="form-control">
+        </div>
+        <div class="col-sm-10">
+
+            <input type="submit" value="Login" class="btn btn-primary">
+        </div>
+    </form>
+    <br>
+    <p>Don't have an account yet?</p>
+    <a class="btn btn-primary" href="{% url 'register' %}">Register</a>
+</div>
+{% else %}
+
+<!--Register form-->
+<div class="container">
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+
+
+            <div>
+                <label for="first_name">First Name</label>
+                <input required type="text" name="first_name" placeholder="Please enter first name"
+                    class="form-control room-form">
+            </div>
+            <div>
+                <label for="last_name"> Last Name</label>
+                <input required type="text" name="last_name" placeholder="Please enter last name"
+                    class="form-control room-form">
+            </div>
+            <div>
+                <label for="username">Username</label>
+                <input required type="text" name="username" placeholder="Please enter username"
+                    class="form-control room-form">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input required type="email" name="email" placeholder="Please enter email"
+                    class="form-control room-form">
+            </div>
+            <div>
+                <label for="password1">Password</label>
+                <input required type="password" name="password1" placeholder="Please enter password"
+                    class="form-control room-form">
+            </div>
+            <div>
+                <label for="password2">Password</label>
+                <input type="password" name="password2" placeholder="Confirm password" class="form-control room-form">
+            </div>
+
+            <div>
+                <input type="submit" value="Register" class="btn btn-secondary">
+            </div>
+        </form>
+    </div>
+
+
+    <br>
+    <p>Already signed up?</p>
+    <a class="btn btn-primary" href="{% url 'login' %}">
+        <i class="fa fa-lock"></i>
+        Login
+    </a>
+    <br>
+</div>
+
+{% endif %}
+
+
+<!--ERROR MESSAGES-->
+<div class="container">
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+    {% endfor %}
+</ul>
+<br>
+{% endif %}
+</div>
+
+{% endblock %}

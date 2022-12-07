@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+{% load static %}
+<div class="profile-wrapper row">
+    <div class="col-2">
+        {% include 'baseapp/topic_component.html' %}
+    </div>
+    <div class="col-7">
+        <div class="text-center container">
+            <h3> <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic"> &nbsp;{{user.first_name}}</h3>
+            <a href="">Edit Profile</a>
+            <div class="text-start">
+            <h2>About</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod et, necessitatibus dignissimos mollitia laudantium tempore odio voluptatem non fugiat totam.
+            </p>
+        </div>
+        <hr>
+        </div>
+        {% include 'baseapp/home_feed.html' %}
+    </div>
+    <div class="col-3">
+        {% include 'baseapp/activities_component.html' %}
+    </div>
+
+</div>
+
+{% endblock content %}

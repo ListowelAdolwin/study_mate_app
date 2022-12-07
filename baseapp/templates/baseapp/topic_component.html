@@ -1,0 +1,27 @@
+<div class="topics-header ms-2">
+    <h4>Filter topics</h4>
+</div>
+<div class="list-group">
+    <a class="btn" href="{% url 'home' %}">
+        <li class="list-group-item d-flex justify-content-between align-items-center topic-container text-primary">
+            <div>
+                All
+            </div>
+            <span class="badge rounded-pill  bg-primary">{{topics.count}}</span>
+        </li>
+    </a>
+</div>
+<br>
+{% for topic in topics %}
+
+<div class="list-group ">
+    <a class="btn " href="{% url 'home' %}?q={{topic.name}}">
+        <li class="list-group-item d-flex justify-content-between align-items-center topic-container text-light">
+            {{topic.name}}
+            <span class="badge bg-dark rounded-pill">{{topic.room_set.all.count}}</span>
+        </li>
+    </a>
+</div>
+<br>
+
+{% endfor %}
