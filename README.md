@@ -1,4 +1,4 @@
-# ![WebApp](https://iharsh234.github.io/WebApp/images/demo/demo_landing.JPG)
+# ![WebApp](https://github.com/ListowelAdolwin/study_mate_app/blob/master/static/images/study_mate_screenshot.png)
 # StudyMate
 <table>
 <tr>
