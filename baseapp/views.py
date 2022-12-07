@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q # This allows the use of |, &&
-from .models import Room, Topic, Message
+from .models import Room, Topic, Message, Profile
 from .forms import RoomForm, UserProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -74,6 +74,12 @@ def registerPage(request):
         'form':form,
     }
     return render(request, 'baseapp/login_register.html', context)
+
+# PROFILE VIEW
+def profile(request):
+
+    context = {}
+    return render(request, 'baseapp/profile.html', context)
 
 # HOME PAGE
 def home(request):
@@ -209,6 +215,7 @@ def userProfile(request, pk):
     topics = Topic.objects.all()
     recent_messages = user.message_set.all()
     rooms = user.room_set.all()
+
     context = {
         'user':user,
         'topics':topics,

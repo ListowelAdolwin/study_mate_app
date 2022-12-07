@@ -19,18 +19,8 @@ class RoomForm(ModelForm):
 
 class UserProfileForm(UserCreationForm):
     email = forms.EmailField(required=True)
+    #avatar = forms.ImageField(required=False)
 
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name','username', 'email', 'password1', 'password2']
-"""
-        widgets = {
-            'first_name' : forms.TextInput(attrs={'class':'form-control room-form', 'placeholder':'Enter your first name'}),
-            'last_name' : forms.TextInput(attrs={'class':'form-control room-form', 'placeholder':'Enter your last name'}),
-            'username' : forms.TextInput(attrs={'class':'form-control room-form', 'placeholder':'Enter your username'}),
-            'email' : forms.EmailField(attrs={'class':'form-control room-form', 'placeholder':'Enter your email'}),
-
-            'password1': forms.PasswordInput(attrs={'class':'form-control room-form','placeholder':'Enter password'}),
-            'password2': forms.PasswordInput(attrs={'class':'form-control room-form', 'placeholder':'Confirm password'}),
-        }
- """

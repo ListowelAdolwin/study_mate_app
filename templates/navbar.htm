@@ -30,16 +30,22 @@ This is done by using an include statement to import the code into the desired p
                         <div>
 
                             <div class="dropdown">
-                                <span class="m-2"><img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic"></span>
+                                <span class="m-2">
+                                    {% if request.user.profile.avatar %}
+                                    <img src="{{request.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                                    {% else %}
+                                    <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                                    {% endif %}
+                                </span>
                                 <a class=" " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span><i class="bi bi-chevron-down pt-2"></i></span>
                                 </a>
 
                                 <ul class="dropdown-menu bg-secondary">
-                                  <li><a class="dropdown-item" href="#">Settings</a></li>
-                                  <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                    <li><a class="dropdown-item" href="#">Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
                                 </ul>
-                              </div>
+                            </div>
 
                         </div>
                         {% else %}

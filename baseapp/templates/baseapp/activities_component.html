@@ -12,11 +12,15 @@
 
         <div class='activity-container p-2 card'>
             <small>
-                <img class="profile-pic" src="{% static 'images/pf5.jpg' %}" alt="profile pic">
+                {% if message.user.profile.avatar %}
+                <img src="{{message.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                {% else %}
+                <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                {% endif %}
                 <a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a> &nbsp;
                 {{message.updated|timesince}} ago
                 {% if message.user == request.user %}
-                <a href="{% url 'delete-message' message.id %}"><i class="bi bi-trash float-end ms-4"></i></a>
+                <a class="float-end" href="{% url 'delete-message' message.id %}"><i class="bi bi-trash  "></i></a>
                 {% endif %}
             </small>
             <small class="my-2">replied to <a href="{% url 'room' message.room.id %}">{{message.room}}</a></small>

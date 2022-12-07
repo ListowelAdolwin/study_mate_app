@@ -19,7 +19,11 @@
         <h4 href="{% url 'room' room.id %}">{{room.name}}</h4>
       </h5>
       <h6 class="card-subtitle mb-2 text-muted">
+        {% if room.host.profile.avatar %}
+        <img src="{{room.host.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+        {% else %}
         <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+        {% endif %}
         <a href="{% url 'user-profile' room.host.id %}">@{{room.host}}</a>
       </h6>
       <p class="card-text container">{{room.description}}.</p>

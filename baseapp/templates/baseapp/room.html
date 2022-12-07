@@ -27,7 +27,10 @@
             <div>
                 <h1>{{rooms.name}}</h1>
                 <h6>Hosted by</h6>
-                <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+
+                <span>
+                <img src="{{rooms.host.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                </span>
                 <a href="{% url 'user-profile' rooms.host.id %}">@{{rooms.host}}</a>
             </div>
 
@@ -48,7 +51,11 @@
             <div>
 
                 <small>
+                    {% if message.user.profile.avatar %}
+                    <img src="{{message.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                    {% else %}
                     <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                    {% endif %}
                     <a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>
                     &nbsp;&nbsp; {{message.updated|timesince}} ago
                 </small>
@@ -87,7 +94,11 @@
 
         {% for participant in participants %}
         <div>
+            {% if participant.profile.avatar %}
+            <img src="{{participant.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+            {% else %}
             <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+            {% endif %}
             <a href="{% url 'user-profile' participant.id %}">@{{participant.username}}</a>
         </div>
         <br>

@@ -41,3 +41,12 @@ class Message(models.Model):
 
     def __str__(self):
         return self.body[:50]
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=CASCADE)
+    avatar = models.ImageField(default='default_avatar.jpg', upload_to='profile_images')
+    bio = models.TextField()
+
+
+    def __str__(self):
+        return self.user.username
