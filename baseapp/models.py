@@ -44,8 +44,10 @@ class Message(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=CASCADE)
+    first_name = models.CharField(null=True, max_length=200)
+    last_name = models.CharField( null=True, max_length=200)
     avatar = models.ImageField(default='default_avatar.jpg', upload_to='profile_images')
-    bio = models.TextField()
+    bio = models.TextField(null=True, blank=True)
 
 
     def __str__(self):

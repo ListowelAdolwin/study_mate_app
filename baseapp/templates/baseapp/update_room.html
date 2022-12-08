@@ -2,18 +2,30 @@
 
 {% block content %}
 
-<div class="container mb-5">
-    <h2>
-        Hello, Welcome to the edit room section.
-    </h2>
+
+<div class="top-container">
+    <span class="back-icon">
+        <a href="{{request.META.HTTP_REFERER}}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </span>
+    <h3 class="create-room-title">
+        Update Room
+    </h3>
+
+</div>
+
+<div class="container mb-5 form-container">
+
+    <div class="center-form">
     <form action="" method="POST">
 
         {% csrf_token %}
 
-        <div class="update-room-form">
+        <div class="">
             <div>
                 <label for="topic_name">Topic</label>
-                <input required type="text" name="topic" value="{{room.topic.name}}" list="topic-list" class="form-control room-form">
+                <input required type="text" name="topic" value="{{room.topic.name}}" list="topic-list" class="">
                 <datalist id="topic-list">
                     <select name="topic_name" id="topic_name">
                         {% for topic in topics %}
@@ -36,6 +48,7 @@
             <input type="submit" value="Update room" class="btn btn-secondary">
         </div>
     </form>
+</div>
 </div>
 <!-- <form action="" method="POST">
 

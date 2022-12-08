@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q # This allows the use of |, &&
 from .models import Room, Topic, Message, Profile
-from .forms import RoomForm, UserProfileForm
+from .forms import RoomForm, UserProfileForm, ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -63,6 +63,10 @@ def registerPage(request):
             user = form.save(commit=False) # this accesses the created user and not save it directly
             user.username = user.username.lower() # This ensures only lowercase usernames are stored in the database
             user.save()
+
+            Profile.objects.create(
+                user = user
+            )
             messages.success(request, "Congratulation, registration successful")
             login(request, user)
             return redirect('home')
@@ -76,10 +80,21 @@ def registerPage(request):
     return render(request, 'baseapp/login_register.html', context)
 
 # PROFILE VIEW
-def profile(request):
+def edit_profile(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
 
-    context = {}
-    return render(request, 'baseapp/profile.html', context)
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            profile.first_name = request.POST.get('first_name')
+            profile.last_name = request.POST.get('last_name')
+            profile.save()
+            form.save()
+            return redirect('home')
+
+    context = {'form':form}
+    return render(request, 'baseapp/update_profile.html', context)
 
 # HOME PAGE
 def home(request):
@@ -166,6 +181,7 @@ def update_room(request, pk):
         room.name = request.POST.get('name')
         room.topic = topic
         room.description = request.POST.get('description')
+        print(room)
         room.save()
 
         return redirect('home')

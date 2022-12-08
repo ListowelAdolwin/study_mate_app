@@ -2,20 +2,30 @@
 
 {% block content %}
 
-<div class="container">
-    <h2>
-        Hello, welcome to the room creation forum.
-    </h2>
+<!--TOP PART OF FORM(TITLE AND BACK ARROW)-->
+<div class="top-container">
+    <span class="back-icon">
+        <a href="{{request.META.HTTP_REFERER}}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </span>
+    <h3 class="create-room-title">
+        Create Room
+    </h3>
+
 </div>
-<div class="container mb-5">
+
+<!--MAIN CREATE FORM-->
+<div class="container mb-5 form-container">
+    <div class="center-form">
     <form action="" method="POST">
 
         {% csrf_token %}
 
         <div>
-            <div>
+            <div class="row1">
                 <label for="topic_name">Topic</label>
-                <input required type="text" name="topic" list="topic-list" class="form-control room-form">
+                <input required type="text" name="topic" list="topic-list" class="" placeholder="Select/create topic">
                 <datalist id="topic-list">
                     <select name="topic_name" id="topic_name">
                         {% for topic in topics %}
@@ -24,20 +34,21 @@
                     </select>
                 </datalist>
             </div>
-            <div>
+            <div class="row1">
                 <label for="room-name"> Room Name</label>
                 {{form.name}}
             </div>
-            <div>
+            <div class="row1">
                 <label for="room-description"> Room Description</label>
                 {{form.description}}
             </div>
         </div>
 
-        <div class="col-sm-10 ">
+        <div class="col-sm-10 row1">
             <input type="submit" value="Create room" class="btn btn-secondary">
         </div>
     </form>
+</div>
 </div>
 
 {% endblock content %}

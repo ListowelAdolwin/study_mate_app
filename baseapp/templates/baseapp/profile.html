@@ -16,7 +16,7 @@
                 <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic"> &nbsp;{{user.first_name}}
                 {% endif %}
             </h3>
-            <a href="">Edit Profile</a>
+            <a href="{% url 'update_profile' %}">Edit Profile</a>
             <div class="text-start">
             <h2>About</h2>
             <p>
