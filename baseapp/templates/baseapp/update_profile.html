@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="top-container">
+    <span class="back-icon">
+        <a href="{{request.META.HTTP_REFERER}}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </span>
+    <h3 class="create-room-title">
+        Update Profile
+    </h3>
+
+</div>
+
+
+<div class="form-container">
+    <div class="center-form">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form}}
+            <input class="btn btn-secondary" type="submit" value="Update">
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
