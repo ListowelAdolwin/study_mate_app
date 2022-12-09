@@ -7,28 +7,59 @@
 <br>
 <!--Login form-->
 {% if page == 'login' %}
-<div class="container">
-    <form action="" method="POST">
-        {% csrf_token %}
-        <div class="col-sm-10 mb-4">
-            <input type="text" name="username" placeholder="Enter your username" class="form-control">
-        </div>
-        <div class="col-sm-10 mb-4">
-            <input type="password" name="password" placeholder="Enter your password" class="form-control">
-        </div>
-        <div class="col-sm-10">
 
-            <input type="submit" value="Login" class="btn btn-primary">
-        </div>
-    </form>
-    <br>
-    <p>Don't have an account yet?</p>
-    <a class="btn btn-primary" href="{% url 'register' %}">Register</a>
+
+<div class="top-container-login">
+    <span class="back-icon">
+        <a href="{{request.META.HTTP_REFERER}}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </span>
+    <h3 class="create-room-title">
+        Login
+    </h3>
+</div>
+
+<div class="form-container-login">
+    <div class="center-form-login">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="col-sm-10 mb-4">
+                <input type="text" name="username" placeholder="Enter your username" class="form-control">
+            </div>
+            <div class="col-sm-10 mb-4">
+                <input type="password" name="password" placeholder="Enter your password" class="form-control">
+            </div>
+            <div class="col-sm-10">
+
+                <input type="submit" value="Login" class="btn btn-primary">
+            </div>
+        </form>
+        <br>
+        <p>Don't have an account yet?</p>
+        <a class="" href="{% url 'register' %}">
+            <i class="bi bi-person-fill-add"></i>
+            Register</a>
+    </div>
 </div>
 {% else %}
 
 <!--Register form-->
-<div class="container">
+
+
+<div class="top-container">
+    <span class="back-icon">
+        <a href="{{request.META.HTTP_REFERER}}">
+            <i class="bi bi-arrow-left"></i>
+        </a>
+    </span>
+    <h3 class="create-room-title">
+        Register
+    </h3>
+</div>
+
+<div class="form-container">
+    <div class="center-form">
     <div>
         <form action="" method="POST">
             {% csrf_token %}
@@ -73,11 +104,13 @@
 
     <br>
     <p>Already signed up?</p>
-    <a class="btn btn-primary" href="{% url 'login' %}">
+    <a class="" href="{% url 'login' %}">
         <i class="fa fa-lock"></i>
         Login
     </a>
     <br>
+</div>
+
 </div>
 
 {% endif %}
@@ -85,14 +118,14 @@
 
 <!--ERROR MESSAGES-->
 <div class="container">
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
-    {% endfor %}
-</ul>
-<br>
-{% endif %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <p{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+            {% endfor %}
+    </ul>
+    <br>
+    {% endif %}
 </div>
 
 {% endblock %}
