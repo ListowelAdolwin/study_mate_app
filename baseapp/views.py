@@ -65,7 +65,11 @@ def registerPage(request):
             user.save()
 
             Profile.objects.create(
-                user = user
+                user = user,
+                first_name = user.first_name,
+                last_name = user.last_name,
+                bio = ""
+
             )
             messages.success(request, "Congratulation, registration successful")
             login(request, user)
@@ -87,9 +91,10 @@ def edit_profile(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
-            profile.first_name = request.POST.get('first_name')
-            profile.last_name = request.POST.get('last_name')
+            request.user.first_name = request.POST.get('first_name')
+            request.user.last_name = request.POST.get('last_name')
             profile.save()
+            request.user.save()
             form.save()
             return redirect('home')
 
@@ -141,7 +146,7 @@ def room(request, pk):
     return render(request, 'baseapp/room.html', context)
 
 # CREATE ROOM
-@login_required(login_url='login_register')
+@login_required(login_url='login')
 def create_room(request):
     form = RoomForm()
     topics = Topic.objects.all()[0:5]
@@ -163,7 +168,7 @@ def create_room(request):
     return render(request, 'baseapp/create_room.html', context)
 
 # UPDATE ROOM
-@login_required(login_url='login_register') # Decorator ensures only logged in users are able to update rooms
+@login_required(login_url='login') # Decorator ensures only logged in users are able to update rooms
 def update_room(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -195,7 +200,7 @@ def update_room(request, pk):
     return render(request, 'baseapp/update_room.html', context)
 
 # DELETE ROOM
-@login_required(login_url='login_register')
+@login_required(login_url='login')
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
 
@@ -211,7 +216,7 @@ def deleteRoom(request, pk):
 
 
 # DELETE MESSAGE
-@login_required(login_url='login_register')
+@login_required(login_url='login')
 def deleteMessage(request, pk):
     message = Message.objects.get(id=pk)
 
