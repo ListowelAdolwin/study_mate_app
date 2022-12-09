@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <div class="">
   <div class="ms-5 d-flex">
     <span>
@@ -24,12 +25,20 @@
         {% else %}
         <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
         {% endif %}
-        <a href="{% url 'user-profile' room.host.id %}">@{{room.host}}</a>
+        <a href="{% url 'user-profile' room.host.id %}">
+          <div>
+          @{{room.host}}
+        </div>
+        </a>
       </h6>
       <p class="card-text container">{{room.description}}.</p>
       <hr>
       <a href="{% url 'room' room.id %}" class="">Go to room</a>
       <small class="ms-5">{{room.topic}}</small>
+      <div class="float-end">
+        <i class="bi bi-people"></i>
+        {{room.participants.count}} joined
+      </div>
     </div>
   </div>
   {% endfor %}
