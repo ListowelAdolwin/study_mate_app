@@ -149,7 +149,7 @@ a {
 }
 
 .back-icon{
-  margin: 10px 0 20px 20px;
+  margin: 10px -40px 20px 20px;
   font-size: 22px;
   color: white;
 }
@@ -171,6 +171,49 @@ a {
   margin: auto;
   border-radius: 0 0 20px 20px;
 }
+
+/*** Login **/
+.top-container-login{
+  width: 400px;
+  height: 50px;
+  background-color: rgb(54, 162, 162);
+  border-radius: 20px 20px 0 0;
+  margin: auto;
+  display: flex;
+}
+
+
+.form-container-login{
+  width: 400px;
+  height: 500px;
+  background-color: darkslategray;
+  margin: auto;
+  border-radius: 0 0 20px 20px;
+}
+
+.center-form-login{
+  width: 300px;
+  height: 400px;
+  padding: 10px;
+  margin: auto;
+  color: white;
+  padding-top: 50px;
+
+}
+
+.center-form-login input{
+  display: block;
+  width: 250px;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+
+/***Login Ends ***/
 
 .center-form{
   width: 450px;
