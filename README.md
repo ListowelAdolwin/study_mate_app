@@ -11,10 +11,10 @@
 
 
 ## Demo
-Here is a working live demo : https://listoweladolwin.pythonanywhere.com/
+Here is a working live demo : https://listowel.pythonanywhere.com/
 
 
-## [Usage](https://listoweladolwin.pythonanywhere.com/)
+## [Usage](https://listowel.pythonanywhere.com/)
 You can visit the app, create a profile and start connecting with fellow developers. <br>
 Create Rooms and invite like minded developers.
 
