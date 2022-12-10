@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Cuprum
+- Font Author: Copyright 2020 The Cuprum Project Authors (https://github.com/alexeiva/cuprum), with Reserved Font Name "Cuprum".
+- Font Source: http://fonts.gstatic.com/s/cuprum/v20/dg45_pLmvrkcOkBnKsOzXyGWTBcmg-X6ZjzSJjQjgnU.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))
