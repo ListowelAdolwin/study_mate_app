@@ -3,7 +3,7 @@
 <table>
 <tr>
 <td>
-  A social web application where where developers get to meet study partners for collaborative learning. <br>
+  A social web application where developers get to meet study partners for collaborative learning. <br>
   Users get to create Rooms for like minded people to help one another accelerate their learning.
 </td>
 </tr>
