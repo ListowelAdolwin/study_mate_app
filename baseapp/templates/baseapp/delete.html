@@ -2,17 +2,53 @@
 
 {% block content %}
 
-<form action="" method="POST">
-    <div container>
+<style>
+    .delete-container {
+        width: 500px;
+        height: auto;
+        margin: 0 auto;
+        border-radius: 10px;
+    }
 
-        {% csrf_token %}
+    .center-delete {
+        width: 400px;
+        height: auto;
+        margin: 0 auto;
+        background-color: darkslategrey;
+        padding: 30px;
+        border-radius: 10px;
+    }
 
-        <p>Are you sure you want to delete "{{obj}}"?</p>
+    .confirm-btn{
+        width: auto;
+        height: auto;
+        background-color: red;
+        margin: auto;
+    }
 
-        <a class="btn-link" href="{{request.META.HTTP_REFERER}}">Go back</a>
-        <!--meta.http_referer sends the user back to the page they came from-->
-        <input type="submit" value="Confirm" class="btn btn-secondary">
-</form>
+    .go-back-btn{
+        width: auto;
+        height: auto;
+        background-color: #2f8968;
+        margin: auto;
+    }
+
+</style>
+
+<div class='delete-container'>
+    <div class="center-delete">
+
+        <form action="" method="POST">
+
+            {% csrf_token %}
+
+            <p>Are you sure you want to delete <i>"{{obj}}"</i>?</p>
+
+            <a class="btn go-back-btn" href="{{request.META.HTTP_REFERER}}">Go back</a>
+            <!--meta.http_referer sends the user back to the page they came from-->
+            <input type="submit" value="Confirm" class="btn confirm-btn float-end">
+        </form>
+    </div>
 </div>
 
 {% endblock content %}
