@@ -14,8 +14,8 @@
 
 {% load static %}
 
-<div class="room-wrapper mx-5 row justify-content-between">
-    <div class="col-9 mydiv p-5 card">
+ <div class="room-wrapper mx-lg-5 row justify-content-between room-mobile-display">
+    <div class="col-9 mydiv p-5 card room-mobile-display">
         <div>
             {% if rooms.host == request.user %}
             <div class="float-end">
@@ -25,7 +25,7 @@
             </div>
             {% endif %}
             <div>
-                <h1>{{rooms.name}}</h1>
+                <h1 class="mobile-room-name">{{rooms.name}}</h1>
                 <h6>Hosted by</h6>
 
                 <span>
@@ -76,7 +76,7 @@
             <div>
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <input style="height:80px;font-size:14pt;" class="form-control" name="body" cols="50" rows="4" type="text"
+                    <input style="height:50px;font-size:10pt;" class="form-control mobile-message-form" name="body" cols="50" rows="4" type="text"
                         placeholder="Write your message here"></input>
                     <button class="btn btn-secondary mt-2" type="submit"><i class="bi bi-send-fill"></i></button>
                 </form>
@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    <div class="col-3 mydiv">
+    <div class="col-3 mydiv d-none d-sm-block">
         <h2>Participants</h2>
         <small>
             {{participants.count}} joined
