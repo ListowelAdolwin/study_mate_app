@@ -2,8 +2,8 @@
 
 
 <div class="">
-  <div class="ms-5 d-flex">
-    <span>
+  <div class="ms-5 d-lex top-room-section">
+    <span class="study-room">
       <h2>Study Rooms</h2>
       <small>{{room_count}} Rooms Found</small>
     </span>
@@ -14,7 +14,7 @@
   </div>
 
   {% for room in rooms %}
-  <div class="card my-3 m-auto room-list-container" style="width: 42rem;" style="height: auto;">
+  <div class="card my-3 m-auto room-list-container">
     <div class="card-body my-3">
       <h5 class="card-title ">
         <h4 href="{% url 'room' room.id %}">{{room.name}}</h4>
