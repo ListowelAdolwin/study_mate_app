@@ -6,28 +6,24 @@
 
 <style>
 
-.mydiv {
-  height:100vh;
-  overflow-y: scroll;
-}
 
 </style>
 
 
 <div class="home-container mx-0 ">
-    <div class="row">
+    <div class="row main-container">
         <!--TOPICS-->
-        <div class="topics col-2 mydiv d-none d-sm-block">
+        <div class="topics col-2 main-feed-display d-none d-sm-block">
             {% include 'baseapp/topic_component.html' %}
         </div>
 
         <!--HOME FEED-->
-        <div class="col-7 mydiv">
+        <div class="rooms col-7 main-feed-display">
             {% include 'baseapp/home_feed.html' %}
         </div>
 
         <!--RECENT ACTIVITIES-->
-        <div class="col-3 mydiv d-none d-sm-block ">
+        <div class="activities col-3 main-feed-display d-none d-sm-block ">
             {% include 'baseapp/activities_component.html' %}
         </div>
 
