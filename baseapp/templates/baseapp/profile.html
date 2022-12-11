@@ -4,10 +4,10 @@
 
 {% load static %}
 <div class="profile-wrapper row">
-    <div class="col-2">
+    <div class="col-2 d-none d-sm-block">
         {% include 'baseapp/topic_component.html' %}
     </div>
-    <div class="col-7">
+    <div class="col-7 mobile-room-wrapper">
         <div class="text-center container">
             <h3>
                 {% if user.profile.avatar %}
@@ -28,7 +28,7 @@
         </div>
         {% include 'baseapp/home_feed.html' %}
     </div>
-    <div class="col-3">
+    <div class="col-3 d-none d-sm-block">
         {% include 'baseapp/activities_component.html' %}
     </div>
 
