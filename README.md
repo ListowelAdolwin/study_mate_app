@@ -3,18 +3,18 @@
 <table>
 <tr>
 <td>
-  A social web application where where developers get to meet study partners for collaborative learning. <br>
+  A social web application where developers get to meet study partners for collaborative learning. <br>
   Users get to create Rooms for like minded people to help one another accelerate their learning.
 </td>
 </tr>
 </table>
 
 
-## Demo
-Here is a working live demo : https://listoweladolwin.pythonanywhere.com/
+## Live Demo
+Here is a working live demo : https://listowel.pythonanywhere.com/
 
 
-## [Usage](https://listoweladolwin.pythonanywhere.com/)
+## [Usage](https://listowel.pythonanywhere.com/)
 You can visit the app, create a profile and start connecting with fellow developers. <br>
 Create Rooms and invite like minded developers.
 
