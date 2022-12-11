@@ -1,3 +1,5 @@
+
+
 :root {
   --color-main: #71c6dd;
   --color-main-light: #e1f6fb;
@@ -17,6 +19,13 @@ body {
   background-color: var(--color-bg);
   min-height: 100vh;
   box-sizing: border-box;
+}
+@media only screen and (min-width: 768px) {
+
+/** MAIN FEED DISPLAY ***/
+.main-feed-display {
+  height:100vh;
+  overflow-y: scroll;
 }
 
 a {
@@ -54,22 +63,6 @@ a {
 }
 
 
-
-.room-orm {
-  width: 50%;
-  margin-bottom: 10px;
-
-    background-color: #15172b;
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 10px;
-}
-
-/* .room-form input{
-  background-color: #2d2d39;
-  color: white;
-}
- */
 .center-form{
   margin: 0 auto;
 
@@ -93,6 +86,12 @@ a {
   background: #ababab;
   height: 3px;
   width: 50px;
+}
+
+/*** ROOM SECTION **/
+.room-list-container{
+  width: 45rem;
+  height: auto;
 }
 
 /** ACTIVITIES **/
@@ -240,4 +239,288 @@ a {
 
 input:focus{
   border: 0;
+}
+
+/*** CONFIRM DELETE PAGE BEGINS**/
+.delete-container {
+  width: 500px;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.center-delete {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  background-color: darkslategrey;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.confirm-btn{
+  width: auto;
+  height: auto;
+  background-color: red;
+  margin: auto;
+}
+
+.go-back-btn{
+  width: auto;
+  height: auto;
+  background-color: #2f8968;
+  margin: auto;
+}
+/*** CONFIRM DELETE PAGE ENDS ***/
+
+}
+
+
+
+
+/*** MOBILE VERSION ***/
+
+@media only screen and (max-width: 800px){
+  .study-room{
+    display: block;
+  }
+
+  .create-room {
+    color: var(--color-light);
+    border: 1px solid var(--color-gray);
+  }
+
+  .study-room{
+    font-size: 15px;
+  }
+
+  .main-feed-display,.room-mobile-display {
+    width: 100%;
+  }
+
+  .room-list-container{
+    width: 90%;
+  }
+
+  a {
+    display: inline-block;
+    color: var(--color-main);
+    text-decoration: none;
+  }
+
+  /***NAV BAR ***/
+
+  .content {
+    padding-top: 100px;
+  }
+
+  .profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 3px;
+  }
+  .center-form{
+    margin: 0 auto;
+
+  }
+
+
+  .room-list-container,
+  .activity-container,
+  .topic-container {
+    background-color: var(--color-dark);
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .logo::before {
+    position: absolute;
+    content: "";
+    width: 50%;
+    background: #ababab;
+    height: 2px;
+    width: 30px;
+  }
+
+  /*** ROOM SECTION ***/
+  .room-mobile-display {
+    margin: auto;
+    font-size: 0.8em;
+  }
+
+  .mobile-room-name{
+    font-size: 20px;
+  }
+
+  .messages-wrapper{
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--color-dark) !important;
+  }
+
+  .mobile-message-form{
+    font-size: 10px;
+  }
+
+  /** UPDATE ROOM */
+
+  .update-room-form input {
+    background-color: #3f4156;
+  }
+
+  .update-room-form input,
+  .update-room-form textarea,
+  .update-room-form select {
+    background: #64646f;
+    border: 1px solid var(--color-dark-light);
+    border-radius: 3px;
+    color: var(--color-light);
+    margin-bottom: 10px;
+  }
+
+  /** CREATE ROOM **/
+
+
+  .top-container{
+    width: 550px;
+    height: 50px;
+    background-color: rgb(54, 162, 162);
+    border-radius: 20px 20px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .back-icon{
+    margin: 10px -40px 20px 20px;
+    font-size: 22px;
+    color: white;
+  }
+
+  .create-room-title{
+    border: 0;
+    margin: auto;
+
+  }
+
+  .center-form label{
+    margin-bottom: 5px;
+  }
+
+  .form-container{
+    width: 550px;
+    height: 700px;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+  }
+
+  /*** Login **/
+  .top-container-login{
+    width: 400px;
+    height: 50px;
+    background-color: rgb(54, 162, 162);
+    border-radius: 20px 20px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+
+  .form-container-login{
+    width: 400px;
+    height: 500px;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .center-form-login{
+    width: 300px;
+    height: 400px;
+    padding: 10px;
+    margin: auto;
+    color: white;
+    padding-top: 50px;
+
+  }
+
+  .center-form-login input{
+    display: block;
+    width: 250px;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+
+  /***Login Ends ***/
+
+  .center-form{
+    width: 450px;
+    height: 500px;
+    padding: 10px;
+    margin: auto;
+    color: white;
+  }
+
+  .center-form input, textarea{
+    display: block;
+    width: 400px;
+    border-radius: 7px;
+    border: 0px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  .center-form input, textarea{
+    background-color: #373745;
+  }
+
+  input:focus{
+    border: 0;
+  }
+
+  /*** CONFIRM DELETE PAGE BEGINS**/
+  .delete-container {
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .center-delete {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    background-color: darkslategrey;
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .confirm-btn{
+    width: auto;
+    height: auto;
+    background-color: red;
+    margin: auto;
+  }
+
+  .go-back-btn{
+    width: auto;
+    height: auto;
+    background-color: #2f8968;
+    margin: auto;
+  }
+  /*** CONFIRM DELETE PAGE ENDS ***/
+
+
+
+
+
 }
