@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from django.db.models import Q # This allows the use of |, &&
 from .models import Room, Topic, Message, Profile
@@ -110,7 +110,7 @@ def home(request):
         Q(description__icontains=q)
     )
 
-    topics = Topic.objects.all()[0:5]
+    topics = Topic.objects.all()
     room_count = rooms.count()
     recent_messages = Message.objects.filter(Q(room__topic__name__icontains=q)).order_by('-updated')
 
@@ -149,16 +149,21 @@ def room(request, pk):
 @login_required(login_url='login')
 def create_room(request):
     form = RoomForm()
-    topics = Topic.objects.all()[0:5]
+    topics = Topic.objects.all()
     if request.method == 'POST':
         topic_name = request.POST.get('topic')
         topic, created = Topic.objects.get_or_create(name=topic_name)
-        Room.objects.create(
+        room = Room.objects.create(
             host = request.user,
             topic = topic,
             name = request.POST.get('name'),
             description = request.POST.get('description'),
         )
+
+        # Add the host to the room participants
+        room.participants.add(request.user)
+
+
         return redirect('home')
 
     context = {
@@ -186,7 +191,6 @@ def update_room(request, pk):
         room.name = request.POST.get('name')
         room.topic = topic
         room.description = request.POST.get('description')
-        print(room)
         room.save()
 
         return redirect('home')
@@ -198,6 +202,15 @@ def update_room(request, pk):
         }
 
     return render(request, 'baseapp/update_room.html', context)
+
+# JOIN ROOM
+@login_required(login_url='login')
+def join_room(request, pk):
+    room = Room.objects.get(id=pk)
+    room.participants.add(request.user)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
 
 # DELETE ROOM
 @login_required(login_url='login')
