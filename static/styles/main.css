@@ -1,5 +1,3 @@
-
-
 :root {
   --color-main: #71c6dd;
   --color-main-light: #e1f6fb;
@@ -20,280 +18,300 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
 }
+
+/** Write Your Message Form **/
+.write-message-form {
+  position: fixed;
+  bottom: 0%;
+  left: 1%;
+  width: 100%;
+}
+.write-message-form input {
+  width: 73%;
+  outline: none;
+  border: 0;
+  padding: 20px;
+  background-color: #2d2d39;
+  color: white;
+}
+
+.message-body {
+  margin-left: 50px;
+}
+
 @media only screen and (min-width: 768px) {
+  /** MAIN FEED DISPLAY ***/
+  .main-feed-display {
+    height: 100vh;
+    overflow-y: scroll;
+  }
 
-/** MAIN FEED DISPLAY ***/
-.main-feed-display {
-  height:100vh;
-  overflow-y: scroll;
+  a {
+    display: inline-block;
+    color: var(--color-main);
+    text-decoration: none;
+  }
+
+  /***NAV BAR ***/
+
+  .navbar {
+    margin-bottom: 200px;
+  }
+
+  .content {
+    padding-top: 100px;
+  }
+
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+  }
+
+  /** TOPICS SECTION */
+  .topics-header {
+    margin-bottom: 2rem;
+  }
+
+  .topics-header h4 {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--color-dark-light);
+  }
+
+  .center-form {
+    margin: 0 auto;
+  }
+
+  .room-list-container,
+  .activity-container,
+  .topic-container {
+    background-color: var(--color-dark);
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+
+  .logo::before {
+    position: absolute;
+    content: "";
+    width: 50%;
+    background: #ababab;
+    height: 3px;
+    width: 50px;
+  }
+
+  /*** ROOM SECTION **/
+
+  .new-room{
+    display: none;
+  }
+
+  .create-new-room{
+    display: block;
+  }
+
+  .top-room-section {
+    display: flex;
+    margin-left: 1.6em;
+  }
+  .room-list-container {
+    width: 45rem;
+    height: auto;
+  }
+
+  /** ACTIVITIES **/
+
+  .activities-header h3 {
+    background-color: var(--color-dark-light);
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    color: var(--color-light);
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .activity-message {
+    background-color: var(--color-bg);
+  }
+
+  .activity-conainer {
+    background-color: var(--color-dark);
+  }
+
+  /** UPDATE ROOM */
+
+  .update-room-form input {
+    background-color: #3f4156;
+  }
+
+  .update-room-form input,
+  .update-room-form textarea,
+  .update-room-form select {
+    background: #64646f;
+    border: 1px solid var(--color-dark-light);
+    border-radius: 3px;
+    color: var(--color-light);
+    margin-bottom: 10px;
+  }
+
+  /** CREATE ROOM **/
+  .create-room {
+    color: var(--color-light);
+    border: 1px solid var(--color-gray);
+    margin-left: 21.5em;
+  }
+
+  .top-container {
+    width: 550px;
+    width: 41%;
+    height: 50px;
+    background-color: rgb(54, 162, 162);
+    border-radius: 20px 20px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .back-icon {
+    margin: 10px -40px 20px 20px;
+    font-size: 22px;
+    color: white;
+  }
+
+  .create-room-title {
+    border: 0;
+    margin: auto;
+  }
+
+  .center-form label {
+    margin-bottom: 5px;
+  }
+
+  .form-container {
+    width: 41%;
+    height: auto;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+  }
+
+  /*** Login **/
+  .top-container-login {
+    width: 400px;
+    width: 35%;
+    height: 50px;
+    height: 10%;
+    background-color: rgb(54, 162, 162);
+    border-radius: 20px 20px 0 0;
+    margin: auto;
+    display: flex;
+  }
+
+  .form-container-login {
+    width: 400px;
+    width: 35%;
+    height: 500px;
+    height: 90%;
+    background-color: darkslategray;
+    margin: auto;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .center-form-login {
+    width: 300px;
+    width: 76%;
+
+    height: 400px;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+    color: white;
+    padding-top: 50px;
+  }
+
+  .center-form-login input {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 0px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  /***Login Ends ***/
+
+  .center-form {
+    width: 75%;
+    height: auto;
+    padding: 10px;
+    margin: auto;
+    color: white;
+  }
+
+  .center-form input,
+  textarea {
+    display: block;
+    width: 100%;
+    border-radius: 7px;
+    border: 0px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: white;
+  }
+
+  .center-form input,
+  textarea {
+    background-color: #373745;
+  }
+
+  input:focus {
+    border: 0;
+  }
+
+  /*** CONFIRM DELETE PAGE BEGINS**/
+  .delete-container {
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .center-delete {
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    background-color: darkslategrey;
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .confirm-btn {
+    width: auto;
+    height: auto;
+    background-color: red;
+    margin: auto;
+  }
+
+  .go-back-btn {
+    width: auto;
+    height: auto;
+    background-color: #2f8968;
+    margin: auto;
+  }
+  /*** CONFIRM DELETE PAGE ENDS ***/
 }
-
-a {
-  display: inline-block;
-  color: var(--color-main);
-  text-decoration: none;
-}
-
-/***NAV BAR ***/
-
-.navbar {
-  margin-bottom: 200px;
-}
-
-.content {
-  padding-top: 100px;
-}
-
-.profile-pic {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin: 5px;
-}
-
-/** TOPICS SECTION */
-.topics-header {
-  margin-bottom: 2rem;
-}
-
-.topics-header h4 {
-  text-transform: uppercase;
-  font-weight: 500;
-  color: var(--color-dark-light);
-}
-
-
-.center-form{
-  margin: 0 auto;
-
-}
-
-
-.room-list-container,
-.activity-container,
-.topic-container {
-  background-color: var(--color-dark);
-}
-
-.logo {
-  font-size: 25px;
-}
-
-.logo::before {
-  position: absolute;
-  content: "";
-  width: 50%;
-  background: #ababab;
-  height: 3px;
-  width: 50px;
-}
-
-/*** ROOM SECTION **/
-
-.top-room-section{
-  display: flex;
-}
-.room-list-container{
-  width: 45rem;
-  height: auto;
-}
-
-/** ACTIVITIES **/
-
-.activities-header h3 {
-  background-color: var(--color-dark-light);
-  text-transform: uppercase;
-  font-weight: 500;
-  padding: 1rem 1.5rem;
-  color: var(--color-light);
-  letter-spacing: 1px;
-  font-size: 1.4rem;
-  border-radius: 5px 5px 0 0;
-}
-
-.activity-message {
-  background-color: var(--color-bg);
-}
-
-.activity-conainer {
-  background-color: var(--color-dark);
-}
-
-/** UPDATE ROOM */
-
-.update-room-form input {
-  background-color: #3f4156;
-}
-
-.update-room-form input,
-.update-room-form textarea,
-.update-room-form select {
-  background: #64646f;
-  border: 1px solid var(--color-dark-light);
-  border-radius: 3px;
-  color: var(--color-light);
-  margin-bottom: 10px;
-}
-
-/** CREATE ROOM **/
-.create-room {
-  color: var(--color-light);
-  border: 1px solid var(--color-gray);
-  margin-left: 295px;
-}
-
-.top-container{
-  width: 550px;
-  width: 41%;
-  height: 50px;
-  background-color: rgb(54, 162, 162);
-  border-radius: 20px 20px 0 0;
-  margin: auto;
-  display: flex;
-}
-
-.back-icon{
-  margin: 10px -40px 20px 20px;
-  font-size: 22px;
-  color: white;
-}
-
-.create-room-title{
-  border: 0;
-  margin: auto;
-
-}
-
-.center-form label{
-  margin-bottom: 5px;
-}
-
-.form-container{
-  width: 41%;
-  height: auto;
-  background-color: darkslategray;
-  margin: auto;
-  border-radius: 0 0 20px 20px;
-}
-
-/*** Login **/
-.top-container-login{
-  width: 400px;
-  width: 35%;
-  height: 50px;
-  height: 10%;
-  background-color: rgb(54, 162, 162);
-  border-radius: 20px 20px 0 0;
-  margin: auto;
-  display: flex;
-}
-
-
-.form-container-login{
-  width: 400px;
-  width: 35%;
-  height: 500px;
-  height: 90%;
-  background-color: darkslategray;
-  margin: auto;
-  border-radius: 0 0 20px 20px;
-}
-
-.center-form-login{
-  width: 300px;
-  width: 76%;
-
-  height: 400px;
-  height: auto;
-  padding: 10px;
-  margin: auto;
-  color: white;
-  padding-top: 50px;
-
-}
-
-.center-form-login input{
-  display: block;
-  width: 100%;
-  border-radius: 5px;
-  border: 0px;
-  font-size: 15px;
-  padding: 10px;
-  margin-bottom: 10px;
-  color: white;
-}
-
-
-/***Login Ends ***/
-
-.center-form{
-  width:75%;
-  height: auto;
-  padding: 10px;
-  margin: auto;
-  color: white;
-}
-
-.center-form input, textarea{
-  display: block;
-  width: 100%;
-  border-radius: 7px;
-  border: 0px;
-  font-size: 15px;
-  padding: 10px;
-  margin-bottom: 10px;
-  color: white;
-}
-
-.center-form input, textarea{
-  background-color: #373745;
-}
-
-input:focus{
-  border: 0;
-}
-
-/*** CONFIRM DELETE PAGE BEGINS**/
-.delete-container {
-  width: 500px;
-  height: auto;
-  margin: 0 auto;
-  border-radius: 10px;
-}
-
-.center-delete {
-  width: auto;
-  height: auto;
-  margin: 0 auto;
-  background-color: darkslategrey;
-  padding: 30px;
-  border-radius: 10px;
-}
-
-.confirm-btn{
-  width: auto;
-  height: auto;
-  background-color: red;
-  margin: auto;
-}
-
-.go-back-btn{
-  width: auto;
-  height: auto;
-  background-color: #2f8968;
-  margin: auto;
-}
-/*** CONFIRM DELETE PAGE ENDS ***/
-
-}
-
-
-
 
 /*** MOBILE VERSION ***/
 
-@media only screen and (max-width: 800px){
-  .study-room{
+@media only screen and (max-width: 800px) {
+  .study-room {
     display: block;
   }
 
@@ -302,16 +320,18 @@ input:focus{
     border: 1px solid var(--color-gray);
   }
 
-  .study-room{
+  .study-room {
     font-size: 15px;
   }
 
-  .main-feed-display,.room-mobile-display, .mobile-room-wrapper {
+  .main-feed-display,
+  .room-mobile-display,
+  .mobile-room-wrapper {
     width: 100%;
   }
 
-  .room-list-container{
-    width: 90%;
+  .room-list-container {
+    width: 98%;
   }
 
   a {
@@ -332,11 +352,9 @@ input:focus{
     border-radius: 50%;
     margin: 3px;
   }
-  .center-form{
+  .center-form {
     margin: 0 auto;
-
   }
-
 
   .room-list-container,
   .activity-container,
@@ -358,22 +376,40 @@ input:focus{
   }
 
   /*** ROOM SECTION ***/
+  .new-room{
+    display: block;
+  }
+
+  .create-new-room{
+    display: none;
+  }
+
+  .create-room {
+    color: var(--color-light);
+    border: 1px solid var(--color-gray);
+    margin-left: 5em;
+  }
+
+  .top-room-section {
+    display: flex;
+    font-size: small;
+  }
   .room-mobile-display {
     margin: auto;
     font-size: 0.8em;
   }
 
-  .mobile-room-name{
+  .mobile-room-name {
     font-size: 20px;
   }
 
-  .messages-wrapper{
+  .messages-wrapper {
     width: 100%;
     margin: 0 auto;
     background-color: var(--color-dark) !important;
   }
 
-  .mobile-message-form{
+  .mobile-message-form {
     font-size: 15px;
   }
 
@@ -395,8 +431,7 @@ input:focus{
 
   /** CREATE ROOM **/
 
-
-  .top-container{
+  .top-container {
     width: 550px;
     height: 50px;
     background-color: rgb(54, 162, 162);
@@ -405,23 +440,22 @@ input:focus{
     display: flex;
   }
 
-  .back-icon{
+  .back-icon {
     margin: 10px -40px 20px 20px;
     font-size: 22px;
     color: white;
   }
 
-  .create-room-title{
+  .create-room-title {
     border: 0;
     margin: auto;
-
   }
 
-  .center-form label{
+  .center-form label {
     margin-bottom: 5px;
   }
 
-  .form-container{
+  .form-container {
     width: 550px;
     height: 700px;
     background-color: darkslategray;
@@ -430,7 +464,7 @@ input:focus{
   }
 
   /*** Login **/
-  .top-container-login{
+  .top-container-login {
     width: 300px;
     height: 40px;
     background-color: rgb(54, 162, 162);
@@ -439,8 +473,7 @@ input:focus{
     display: flex;
   }
 
-
-  .form-container-login{
+  .form-container-login {
     width: 300px;
     height: 400px;
     background-color: darkslategray;
@@ -448,17 +481,16 @@ input:focus{
     border-radius: 0 0 10px 10px;
   }
 
-  .center-form-login{
+  .center-form-login {
     width: 150px;
     height: 200px;
     padding: 7px;
     margin: auto;
     color: white;
     padding-top: 30px;
-
   }
 
-  .center-form-login input{
+  .center-form-login input {
     display: block;
     width: 150px;
     border-radius: 5px;
@@ -469,9 +501,8 @@ input:focus{
     color: white;
   }
 
-
   /***Login Ends ***/
-  .top-container{
+  .top-container {
     width: 300px;
     height: 40px;
     background-color: rgb(54, 162, 162);
@@ -480,8 +511,7 @@ input:focus{
     display: flex;
   }
 
-
-  .form-container{
+  .form-container {
     width: 300px;
     height: 600px;
     background-color: darkslategray;
@@ -489,7 +519,7 @@ input:focus{
     border-radius: 0 0 10px 10px;
   }
 
-  .center-form{
+  .center-form {
     width: 200px;
     height: 200px;
     padding: 7px;
@@ -498,7 +528,8 @@ input:focus{
     padding-top: 30px;
   }
 
-  .center-form input, textarea{
+  .center-form input,
+  textarea {
     display: block;
     width: 200px;
     border-radius: 5px;
@@ -509,11 +540,12 @@ input:focus{
     color: white;
   }
 
-  .center-form input, textarea{
+  .center-form input,
+  textarea {
     background-color: #373745;
   }
 
-  input:focus{
+  input:focus {
     border: 0;
   }
 
@@ -534,14 +566,14 @@ input:focus{
     border-radius: 10px;
   }
 
-  .confirm-btn{
+  .confirm-btn {
     width: auto;
     height: auto;
     background-color: red;
     margin: auto;
   }
 
-  .go-back-btn{
+  .go-back-btn {
     width: auto;
     height: auto;
     background-color: #2f8968;
@@ -549,8 +581,25 @@ input:focus{
   }
   /*** CONFIRM DELETE PAGE ENDS ***/
 
+  /** Write Your Message Form **/
+  .write-message-form {
+    position: fixed;
+    bottom: 0%;
+    left: 2%;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .write-message-form input {
+    width: 95%;
+    border-radius: 10px;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    background-color: #2d2d39;
+    color: white;
+  }
 
-
-
-
+  .message-body {
+    margin-left: 10px;
+  }
 }
