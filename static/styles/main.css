@@ -19,6 +19,13 @@ body {
   box-sizing: border-box;
 }
 
+/** NAVBAR **/
+.nav-menu-icon{
+  font-size: 1.5em;
+  margin: 0 0.5em 0 0;
+  border: 0;
+}
+
 /** Write Your Message Form **/
 .write-message-form {
   position: fixed;
@@ -37,6 +44,18 @@ body {
 
 .message-body {
   margin-left: 50px;
+}
+
+/** ROOM ***/
+.tooltiptext{
+  font-size: 1em;
+  color: #fff;
+  visibility: hidden;
+}
+
+.save-tooltip:hover .tooltiptext{
+  visibility: visible;
+  transition: 0.3s;
 }
 
 @media only screen and (min-width: 768px) {
@@ -396,7 +415,7 @@ body {
   }
   .room-mobile-display {
     margin: auto;
-    font-size: 0.8em;
+    font-size: 0.94em;
   }
 
   .mobile-room-name {
@@ -591,7 +610,6 @@ body {
   }
   .write-message-form input {
     width: 95%;
-    border-radius: 10px;
     outline: none;
     border: 0;
     padding: 10px;
