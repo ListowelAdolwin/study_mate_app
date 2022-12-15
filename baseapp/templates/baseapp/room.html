@@ -61,11 +61,19 @@
                 </small>
                 <div class="message-body">
                 <p class="mt-1 ms-3">{{message.body}}</p>
+                <div class="d-flex">
                 {% if message.user == request.user %}
-                <div>
-                    <a href="{% url 'delete-message' message.id %}"><i class="bi bi-trash ms-3"></i></a>
+                <div class="save-tooltip">
+                    <a class="save-tooltip" href="{% url 'delete-message' message.id %}"><i class="bi bi-trash ms-3"></i></a>
+                    <span class="tooltiptext ms-1">Delete</span>
                 </div>
                 {% endif %}
+                <div class="save-tooltip ms-2" >
+                    <a class="save-tooltip" href="{% url 'save' message.id %}"><i class="bi bi-bookmark"></i></a>
+                    <span class="tooltiptext ms-1">Save post</span>
+                </div>
+
+            </div>
                 </div>
 
             </div>
@@ -80,7 +88,7 @@
             <div class="write-message-form">
                 <form action="" method="POST">
                     {% csrf_token %}
-                    <input class="" style="height:50px;font-size:12pt;" class="form-control mobile-message-form" name="body"
+                    <input class="" style="height:50px;font-size:12pt;" class="mobile-message-form" name="body"
                      type="text" placeholder="Write your message here">
 <!--                     <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
  -->                </form>
@@ -114,4 +122,9 @@
         {% endfor %}
     </div>
 </div>
+
+<script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+</script>
 {% endblock content %}
