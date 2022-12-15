@@ -258,3 +258,20 @@ def userProfile(request, pk):
     }
 
     return render(request, 'baseapp/profile.html', context)
+
+@login_required(login_url='login')
+def save(request, pk):
+    bookmarks = request.user.profile.bookmarks
+    message = Message.objects.get(id=pk)
+    bookmarks.add(message)
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def bookmarks(request, pk):
+    bookmarks = request.user.profile.bookmarks.all()
+    context = {
+            'bookmarks':bookmarks,
+    }
+
+    return render(request, 'baseapp/bookmarks.html', context)
+
