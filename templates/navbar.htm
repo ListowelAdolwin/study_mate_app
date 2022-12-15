@@ -11,8 +11,9 @@ This is done by using an include statement to import the code into the desired p
 <nav class="navbar bg-dark mb-4 p-2 navbar-expand-sm">
     <div class="container-fluid container">
         <a href="/" class="navbar-brand text-light logo">StudyMate</a>
-        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-            <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <!--             <span class="text-light navbar-toggler-icon"></span>
+ --> <span class="text-light nav-menu-icon"><i class="bi bi-list"></i></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navmenu">
@@ -28,13 +29,17 @@ This is done by using an include statement to import the code into the desired p
                         {% if request.user.is_authenticated %}
                         <div class="m-auto mx-3 text-light">Hello, {{request.user.first_name}}</div>
                         <div>
-
                             <div class="dropdown">
                                 <span class="m-2">
                                     {% if request.user.profile.avatar %}
-                                    <img src="{{request.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                                    <a href="{% url 'user-profile' request.user.id %}">
+                                        <img src="{{request.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                                    </a>
                                     {% else %}
-                                    <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+
+                                    <a href="{% url 'user-profile' message.user.id %}">
+                                        <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                                    </a>
                                     {% endif %}
                                 </span>
                                 <a class=" " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
