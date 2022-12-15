@@ -1,0 +1,41 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+    <div class="w-lg-75">
+        <h3>
+            Your saved messages
+        </h3>
+        <br>
+        <br>
+
+        {% for bookmark in bookmarks %}
+        <small>
+            {% if bookmark.user.profile.avatar %}
+            <img src="{{bookmark.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+            {% else %}
+            <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+            {% endif %}
+            <a href="{% url 'user-profile' bookmark.user.id %}">@{{bookmark.user}}</a>
+            &nbsp;&nbsp; {{bookmark.updated|timesince}} ago
+        </small>
+        <br>
+        <div>
+            {{bookmark.body}}
+        </div>
+        <br>
+        <small class="text-primary">
+            {{bookmark.room}}
+        </small>
+
+        <br>
+        <hr>
+
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
