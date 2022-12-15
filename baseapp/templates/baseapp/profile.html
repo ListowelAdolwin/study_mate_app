@@ -8,23 +8,30 @@
         {% include 'baseapp/topic_component.html' %}
     </div>
     <div class="col-7 mobile-room-wrapper">
-        <div class="text-center container">
-            <h3>
+        <div class=" container">
+            <h4>
                 {% if user.profile.avatar %}
                 <img src="{{user.profile.avatar.url}}" alt="Avatar" class="profile-pic"> &nbsp;{{user.first_name}}
                 {% else %}
                 <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic"> &nbsp;{{user.first_name}}
                 {% endif %}
-            </h3>
-            <a href="{% url 'update_profile' %}">Edit Profile</a>
+            </h4>
+            {% if user == request.user %}
+            <div>
+                <a href="{% url 'update_profile' %}">Edit Profile</a>
+                <br>
+                <a href="{% url 'bookmarks' user.id %}">Saved messages</a>
+            </div>
+            {% endif %}
+            <br><br>
             <div class="text-start">
-            <h2>About</h2>
-            <p>
-                {{user.profile.bio}}
-              <!--   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod et, necessitatibus dignissimos mollitia laudantium tempore odio voluptatem non fugiat totam. -->
-            </p>
-        </div>
-        <hr>
+                <h2>About</h2>
+                <p>
+                    {{user.profile.bio}}
+                    <!--   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod et, necessitatibus dignissimos mollitia laudantium tempore odio voluptatem non fugiat totam. -->
+                </p>
+            </div>
+            <hr>
         </div>
         {% include 'baseapp/home_feed.html' %}
     </div>
