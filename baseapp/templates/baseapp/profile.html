@@ -3,42 +3,68 @@
 {% block content %}
 
 {% load static %}
-<div class="profile-wrapper row">
-    <div class="col-2 d-none d-sm-block">
-        {% include 'baseapp/topic_component.html' %}
-    </div>
-    <div class="col-7 mobile-room-wrapper">
-        <div class=" container">
-            <h4>
-                {% if user.profile.avatar %}
-                <img src="{{user.profile.avatar.url}}" alt="Avatar" class="profile-pic"> &nbsp;{{user.first_name}}
+
+<!--NEW-->
+<div class="flexcontainer row justify-content-around main-container">
+    <div class="middlecontainer col-8 main-feed-display">
+
+        <section class="twitterprofile">
+            <div class="headerprofileimage">
+                {% if user.profile.header %}
+                <img src="{{user.profile.header.url}}" alt="Header" id="headerimage">
                 {% else %}
-                <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic"> &nbsp;{{user.first_name}}
+                <img src="{% static 'images/header1.png' %}" alt="header" id="headerimage">
                 {% endif %}
-            </h4>
-            {% if user == request.user %}
-            <div>
-                <a href="{% url 'update_profile' %}">Edit Profile</a>
-                <br>
-                <a href="{% url 'bookmarks' user.id %}">Saved messages</a>
+                {% if user.profile.avatar %}
+                <img src="{{user.profile.avatar.url}}" alt="Avatar" class="profile-pic" id="profilepic">
+                {% else %}
+                <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic" id="profilepic">
+                {% endif %}
+
+                {% if user == request.user %}
+                <div class="editprofile">
+                    <a href="{% url 'update_profile' %}">Edit Profile</a>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
-            <br><br>
-            <div class="text-start">
-                <h2>About</h2>
-                <p>
+            <div class="bio">
+                <div class="handle">
+                    <h3>{{user.first_name}} {{user.last_name}}</h3>
+                    <span>@{{user.username}}</span>
+                </div>
+
+                <div>
                     {{user.profile.bio}}
-                    <!--   Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod et, necessitatibus dignissimos mollitia laudantium tempore odio voluptatem non fugiat totam. -->
-                </p>
+                </div>
+
+                <br>
+                 <span><i class="fa fa-calendar"></i> Joined May 2013</span>
+                <div class="nawa">
+                    <div class="followers"> 4 <span>rooms created</span></div>
+                    <div>14<span> rooms joined</span></div>
+                </div>
             </div>
-            <hr>
+        </section>
+
+        <br>
+        <hr>
+        <div class="">
+            <h2>
+                Rooms Hosted
+            </h2>
+            {% include 'baseapp/home_feed.html' %}
         </div>
-        {% include 'baseapp/home_feed.html' %}
     </div>
-    <div class="col-3 d-none d-sm-block">
+
+    <div class="col-3 d-none d-sm-block main-feed-display">
         {% include 'baseapp/activities_component.html' %}
     </div>
 
+
 </div>
+<!--NEW-->
+
 
 {% endblock content %}
+
+
