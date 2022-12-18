@@ -28,7 +28,7 @@ class UserProfileForm(UserCreationForm):
 class  ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'avatar', 'bio']
+        fields = ['first_name', 'last_name', 'avatar', 'header', 'bio']
 
         widgets = {
             'first_name' : forms.TextInput(attrs={'class':'', 'placeholder':'Enter first name'}),
