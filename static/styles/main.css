@@ -61,6 +61,72 @@ body {
   transition: 0.3s;
 }
 
+
+/* MIDDLE AND RIGHT CONTAINERS */
+
+
+.headerprofileimage {
+  margin-top: 10px;
+  position: relative;
+
+}
+
+#headerimage {
+  width: 45em;
+  height:15em;
+  width: 100%;
+}
+
+#profilepic {
+  border-radius: 50%;
+  width: 150px;
+  height:150px;
+  position: absolute;
+  top: 130px;
+  left: 20px;
+  border: 4px solid rgb(21, 32, 43);
+}
+
+.editprofile {
+  margin-top: 5px;
+  float: right;
+  border: 1px solid rgb(155, 157, 160);
+  border-radius: 15px;
+  padding: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.bio {
+  margin-top: 55px;
+  margin-left: 20px;
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.handle {
+  line-height: 19px;
+  margin-bottom: 10px;
+}
+
+.followers {
+  margin-right: 15px;
+}
+
+.nawa {
+  display: flex;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  margin-top: 10px;
+  font-weight: bold;
+
+}
+
 @media only screen and (min-width: 768px) {
   /** MAIN FEED DISPLAY ***/
   .main-feed-display {
@@ -140,7 +206,7 @@ body {
     margin-left: 1.6em;
   }
   .room-list-container {
-    width: 45rem;
+    width: 98%;
     height: auto;
   }
 
@@ -623,4 +689,78 @@ body {
   .message-body {
     margin-left: 10px;
   }
+
+  /* MIDDLE AND RIGHT CONTAINERS */
+
+.flexcontainer {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.middlecontainer {
+  width: 100%;
+  height: 100%;
+
+}
+
+.headerprofileimage {
+  margin-top: 10px;
+  position: relative;
+
+}
+
+#headerimage {
+  height:10em;
+  width: 100%;
+}
+
+#profilepic {
+  border-radius: 50%;
+  width: 120px;
+  height:120px;
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  border: 4px solid rgb(21, 32, 43);
+}
+
+.editprofile {
+  margin-top: 10px;
+  float: right;
+  border: 1px solid rgb(155, 157, 160);
+  border-radius: 13px;
+  padding: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.bio {
+  margin-top: 55px;
+  margin-left: 20px;
+  line-height: 30px;
+  font-size: 15px;
+}
+
+.handle {
+  line-height: 19px;
+  margin-bottom: 10px;
+}
+
+.followers {
+  margin-right: 15px;
+}
+
+.nawa {
+  display: flex;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+  margin-top: 10px;
+  font-weight: bold;
+
+}
 }
