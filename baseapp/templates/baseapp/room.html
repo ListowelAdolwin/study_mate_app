@@ -39,7 +39,11 @@
             </div>
             <br>
             <p class="ms-2">
+                <span>
                 {{rooms.topic}}
+                <span class="float-end">
+                    <a href="{% url 'join_room' rooms.id %}">Join</a>
+                </span>
             </p>
         </div>
         <hr>
@@ -102,9 +106,6 @@
         <div>
             <small>
                 {{participants.count}} joined
-            </small>
-            <small class="float-end fs-5">
-                <a href="{% url 'join_room' rooms.id %}">Join</a>
             </small>
         </div>
         <hr>
