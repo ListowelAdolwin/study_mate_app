@@ -19,6 +19,20 @@
 
         <!--HOME FEED-->
         <div class="rooms col-7 main-feed-display">
+            <div class="top-room-section">
+                <span class="study-room">
+                  <h2>Study Rooms</h2>
+                  <small>{{room_count}} Rooms Found</small>
+                </span class=''>
+                <span class="new-room">
+                  <a class="create-room btn mt-3" href="{% url 'create_room' %}"><i class="bi bi-plus-lg"></i>New Room</a>
+                </span>
+
+                <span class="create-new-room">
+                  <a class="create-room btn mt-3" href="{% url 'create_room' %}"><i class="bi bi-plus-lg"></i>Create New Room</a>
+                </span>
+                <br>
+              </div>
             {% include 'baseapp/home_feed.html' %}
         </div>
 
