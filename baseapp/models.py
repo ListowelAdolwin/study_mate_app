@@ -46,8 +46,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     first_name = models.CharField(null=True, max_length=200)
     last_name = models.CharField( null=True, max_length=200)
-    avatar = models.ImageField(default='default_header.png', upload_to='profile_images')
-    header = models.ImageField(default='default_avatar.jpg', upload_to='profile_images')
+    avatar = models.ImageField(default='default_avatar.jpg', upload_to='profile_images')
+    header = models.ImageField(default='default_header.png', upload_to='profile_images')
     bio = models.TextField(null=True, blank=True)
     bookmarks = models.ManyToManyField(Message, related_name='bookmarks', blank=True)
 
