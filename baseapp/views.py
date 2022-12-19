@@ -132,7 +132,8 @@ def room(request, pk):
         message = Message.objects.create(
             user=request.user,
             room=room,
-            body=request.POST.get('body')
+            body=request.POST.get('body'),
+            image = request.POST.get('image') if request.POST.get('image') else None,
         )
 
         room.participants.add(request.user)
