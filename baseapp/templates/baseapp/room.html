@@ -16,7 +16,7 @@
 
 <div class="room-wrapper mx-lg-1 row justify-content-between room-mobile-display">
     <div class="col-9 mydiv p-5 card room-mobile-display">
-        <div>
+        <div >
             {% if rooms.host == request.user %}
             <div class="float-end">
                 <a href="{% url 'update_room' rooms.id %}"><span><i class="bi bi-pencil"></i></span></a>
@@ -24,7 +24,8 @@
                 <a href="{% url 'delete-room' rooms.id %}"><span><i class="bi bi-trash"></i></span></a>
             </div>
             {% endif %}
-            <div>
+            <div class="w-75">
+            <div class="w-75">
                 <h1 class="mobile-room-name">{{rooms.name}}</h1>
                 <h6>Hosted by</h6>
 
@@ -37,6 +38,7 @@
             <div class="container mt-3">
                 {{rooms.description}}
             </div>
+        </div>
             <br>
             <p class="ms-2">
                 <span>
