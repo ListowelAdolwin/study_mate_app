@@ -66,7 +66,12 @@
                     &nbsp;&nbsp; {{message.updated|timesince}} ago
                 </small>
                 <div class="message-body">
-                <p class="mt-1 ms-3">{{message.body}}</p>
+                <p class="mt-1 ms-3">{{message.body}}
+                    {% if message.image %}
+
+                    <img src="{{message.image.url}}" alt="Post">
+                    {% endif %}
+                </p>
                 <div class="d-flex">
                 {% if message.user == request.user %}
                 <div class="save-tooltip">
@@ -96,8 +101,10 @@
                     {% csrf_token %}
                     <input class="" style="height:50px;font-size:12pt;" class="mobile-message-form" name="body"
                      type="text" placeholder="Write your message here">
-<!--                     <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
- -->                </form>
+                     <input type="file" name="image" id="image">
+                    <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
+                </form>
+
             </div>
             {% endif %}
     </div>
