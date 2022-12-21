@@ -246,16 +246,27 @@ def deleteMessage(request, pk):
 
 # USER PROFILE
 def userProfile(request, pk):
+    all_rooms = Room.objects.all()
     user = User.objects.get(id=pk)
     topics = Topic.objects.all()
     recent_messages = user.message_set.all()
     rooms = user.room_set.all()
+    user_rooms_count = Room.objects.filter(host=user).count
+
+    user_rooms_joined_count = 0
+    #user_rooms_joined_count = Room.objects.filter(participants.filter(username=user.username)).count
+    #user_rooms_joined_count = user.message_set.all().count
+    for room in all_rooms:
+        if room.participants.filter(username=user.username).count() == 1:
+            user_rooms_joined_count += 1
 
     context = {
         'user':user,
         'topics':topics,
         'recent_messages':recent_messages,
         'rooms':rooms,
+        'user_rooms_count':user_rooms_count,
+        'user_rooms_joined_count':user_rooms_joined_count,
     }
 
     return render(request, 'baseapp/profile.html', context)
