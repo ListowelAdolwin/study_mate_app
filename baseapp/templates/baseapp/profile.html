@@ -38,10 +38,10 @@
                 </div>
 
                 <br>
-                 <span><i class="fa fa-calendar"></i> Joined May 2013</span>
+                 <span><i class="fa fa-calendar"></i> Joined {{user.date_joined | date:'M, Y'}}</span>
                 <div class="nawa">
-                    <div class="followers"> {{user_rooms_count}} <span>rooms created</span></div>
-                    <div>{{user_rooms_joined_count}}<span> rooms joined</span></div>
+                    <div class="followers"> <strong class="text-white">{{user_rooms_count}}</strong> <span>rooms created</span></div>
+                    <div><strong class="text-white">{{user_rooms_joined_count}}</strong><span> rooms joined</span></div>
                 </div>
             </div>
         </section>
@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div class="col-3 d-none d-sm-block main-feed-display">
+    <div class="col-3 d-none d-sm-block main-feed-display text-center">
         {% include 'baseapp/activities_component.html' %}
     </div>
 
