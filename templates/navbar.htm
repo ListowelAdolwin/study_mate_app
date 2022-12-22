@@ -1,64 +1,67 @@
-<!--This code below is the navbar
-It is supposed to show on all pages of the project. It will be a pain in the ass
-to copy it and paste it on every single page.
-This introduces a concept called TEMPLATE INHERITANCE in django.
-One code is able to be inherited by different pages.
-This is done by using an include statement to import the code into the desired page-->
-
 {% load static %}
+    <style>
 
+        .nav-menu-icon{
+  font-size: 1.5em;
+  margin: 0 0.5em 0 0;
+  border: 0;
+}
 
-<nav class="navbar bg-dark mb-4 p-2 navbar-expand-sm">
-    <div class="container-fluid container">
+.hide-border{
+    border: 0;
+    outline: 0;
+}
+
+.navbar-toggler{
+    border: 0;
+    outline: 0;
+
+}
+    </style>
+<nav class="navbar navbar-dark bg-dark fixed-top px-2">
+    <div class="container-fluid">
         <a href="/" class="navbar-brand text-light logo">StudyMate</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
-            <!--             <span class="text-light navbar-toggler-icon"></span>
- --> <span class="text-light nav-menu-icon"><i class="bi bi-list"></i></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navmenu">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <form class="nav-link" action="{% url 'home' %}" method="GET" class="d-flex" role="search">
-                        <input class="form-control text-light bg-dark me-2 search-background" name='q' type="search"
-                            placeholder="Search rooms" aria-label="Search">
-                    </form>
-                </li>
-                <li class="nav-item">
-                    <div class="d-flex text-center nav-link">
-                        {% if request.user.is_authenticated %}
-                        <div class="m-auto mx-3 text-light">Hello, {{request.user.first_name}}</div>
-                        <div>
-                            <div class="dropdown">
-                                <span class="m-2">
-                                    {% if request.user.profile.avatar %}
-                                    <a href="{% url 'user-profile' request.user.id %}">
-                                        <img src="{{request.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
-                                    </a>
-                                    {% else %}
+      <form  action="{% url 'home' %}" method="GET" class="nav-link d-none d-md-flex w-50" role="search">
+        <input class="form-control text-light bg-dark me-2 search-background" name='q' type="search"
+        placeholder="Search rooms" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
 
-                                    <a href="{% url 'user-profile' message.user.id %}">
-                                        <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
-                                    </a>
-                                    {% endif %}
-                                </span>
-                                <a class=" " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span><i class="bi bi-chevron-down pt-2"></i></span>
-                                </a>
-
-                                <ul class="dropdown-menu bg-secondary">
-                                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit profile</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                        {% else %}
-                        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
-                        {% endif %}
-                    </div>
-                </li>
-            </ul>
+      <button class="navbar-toggler hide-border" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+        {% if request.user.is_authenticated %}
+        <img class="profile-pic" src="{{request.user.profile.avatar.url}}" alt="Avatar">
+        {% else %}
+        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+        {% endif %}
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><a href="/" class="navbar-brand text-light logo">StudyMate</a></h5>
+          <button type="button" class="btn-close btn-close-white float-end" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
+        <div class="offcanvas-body">
+            <form  action="{% url 'home' %}" method="GET" class="d-flex mt-3 d-lg-none d-block nav-link" role="search">
+                <input class="form-control text-light bg-dark me-2 search-background" name='q' type="search"
+                placeholder="Search rooms" aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+              </form>
+              <br class="d-lg-none d-block">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item text-light">
+                <a class="nav-link" aria-current="page" href="{% url 'user-profile' request.user.id %}">View profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'update_profile' %}">Edit profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'bookmarks' request.user.id %}"> Bookmarks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
+        </div>
+      </div>
     </div>
-</nav>
+  </nav>
