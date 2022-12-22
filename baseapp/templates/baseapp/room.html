@@ -16,7 +16,7 @@
 
 <div class="room-wrapper mx-lg-1 row justify-content-between room-mobile-display">
     <div class="col-9 mydiv p-5 card room-mobile-display">
-        <div >
+        <div>
             {% if rooms.host == request.user %}
             <div class="float-end">
                 <a href="{% url 'update_room' rooms.id %}"><span><i class="bi bi-pencil"></i></span></a>
@@ -24,28 +24,28 @@
                 <a href="{% url 'delete-room' rooms.id %}"><span><i class="bi bi-trash"></i></span></a>
             </div>
             {% endif %}
-            <div class="w-75">
-            <div class="w-75">
-                <h1 class="mobile-room-name">{{rooms.name}}</h1>
-                <h6>Hosted by</h6>
+            <div class="">
+                <div class="">
+                    <h1 class="mobile-room-name">{{rooms.name}}</h1>
+                    <h6>Hosted by</h6>
 
-                <span>
-                    <img src="{{rooms.host.profile.avatar.url}}" alt="Avatar" class="profile-pic">
-                </span>
-                <a href="{% url 'user-profile' rooms.host.id %}">@{{rooms.host}}</a>
-            </div>
+                    <span>
+                        <img src="{{rooms.host.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                    </span>
+                    <a href="{% url 'user-profile' rooms.host.id %}">@{{rooms.host}}</a>
+                </div>
 
-            <div class="container mt-3">
-                {{rooms.description}}
+                <div class="container mt-3 description-length">
+                    {{rooms.description | linebreaks}}
+                </div>
             </div>
-        </div>
             <br>
             <p class="ms-2">
                 <span>
-                {{rooms.topic}}
-                <span class="float-end">
-                    <a href="{% url 'join_room' rooms.id %}">Join</a>
-                </span>
+                    {{rooms.topic}}
+                    <span class="float-end">
+                        <a href="{% url 'join_room' rooms.id %}">Join</a>
+                    </span>
             </p>
         </div>
         <hr>
@@ -66,25 +66,30 @@
                     &nbsp;&nbsp; {{message.updated|timesince}} ago
                 </small>
                 <div class="message-body">
-                <p class="mt-1 ms-3">{{message.body}}
-                    {% if message.image %}
+                    <p class="mt-1 ms-3">
+                        {{message.body}}
+                    </p>
+                    <div class="p-3">
+                        {% if message.image %}
+                        <a href="{{message.image.url}}"><img class="room-post-image" src="{{message.image.url}}"
+                                alt="Post"></a>
+                        {% endif %}
+                    </div>
+                    <div class="d-flex">
+                        {% if message.user == request.user %}
+                        <div class="save-tooltip">
+                            <a class="save-tooltip" href="{% url 'delete-message' message.id %}"><i
+                                    class="bi bi-trash ms-3"></i></a>
+                            <span class="tooltiptext ms-1">Delete</span>
+                        </div>
+                        {% endif %}
+                        <div class="save-tooltip ms-2">
+                            <a class="save-tooltip" href="{% url 'save' message.id %}"><i
+                                    class="bi bi-bookmark"></i></a>
+                            <span class="tooltiptext ms-1">Save post</span>
+                        </div>
 
-                    <img src="{{message.image.url}}" alt="Post">
-                    {% endif %}
-                </p>
-                <div class="d-flex">
-                {% if message.user == request.user %}
-                <div class="save-tooltip">
-                    <a class="save-tooltip" href="{% url 'delete-message' message.id %}"><i class="bi bi-trash ms-3"></i></a>
-                    <span class="tooltiptext ms-1">Delete</span>
-                </div>
-                {% endif %}
-                <div class="save-tooltip ms-2" >
-                    <a class="save-tooltip" href="{% url 'save' message.id %}"><i class="bi bi-bookmark"></i></a>
-                    <span class="tooltiptext ms-1">Save post</span>
-                </div>
-
-            </div>
+                    </div>
                 </div>
 
             </div>
@@ -94,19 +99,19 @@
 
         </div>
 
-            <!--WRITE MESSAGE-->
-            {% if request.user.is_authenticated %}
-            <div class="write-message-form">
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <input class="" style="height:50px;font-size:12pt;" class="mobile-message-form" name="body"
-                     type="text" placeholder="Write your message here">
-                     <input type="file" name="image" id="image">
-                    <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
-                </form>
+        <!--WRITE MESSAGE-->
+        {% if request.user.is_authenticated %}
+        <div class="write-message-form">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <input class="" style="height:50px;font-size:12pt;" class="mobile-message-form" name="body" type="text"
+                    placeholder="Write your message here">
+                <input type="file" name="image" id="image">
+                <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
+            </form>
 
-            </div>
-            {% endif %}
+        </div>
+        {% endif %}
     </div>
 
     <!--PARTICIPANTS-->
@@ -135,6 +140,6 @@
 
 <script>
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
 {% endblock content %}
