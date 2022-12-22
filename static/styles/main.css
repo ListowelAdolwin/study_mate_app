@@ -20,14 +20,11 @@ body {
 }
 
 /** NAVBAR **/
-.nav-menu-icon{
-  font-size: 1.5em;
-  margin: 0 0.5em 0 0;
-  border: 0;
-}
-
-.navbar-toggler{
-  border: 0;
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
 }
 /** Write Your Message Form **/
 .write-message-form {
@@ -43,6 +40,11 @@ body {
   padding: 20px;
   background-color: #2d2d39;
   color: white;
+}
+
+.room-post-image{
+  width: 30em;
+  height: auto;
 }
 
 .message-body {
@@ -154,7 +156,6 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin: 5px;
   }
 
   /** TOPICS SECTION */
@@ -192,7 +193,9 @@ body {
   }
 
   /*** ROOM SECTION **/
-
+.description-length{
+  padding-right: 100px;
+}
   .new-room{
     display: none;
   }
@@ -438,7 +441,6 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin: 3px;
   }
   .center-form {
     margin: 0 auto;
