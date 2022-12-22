@@ -1,369 +1,169 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Twitter Profile</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='twitterprofile.css'>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-</head>
 
-<body>
 
-    <style>
-        * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--This code below is the navbar
+It is supposed to show on all pages of the project. It will be a pain in the ass
+to copy it and paste it on every single page.
+This introduces a concept called TEMPLATE INHERITANCE in django.
+One code is able to be inherited by different pages.
+This is done by using an include statement to import the code into the desired page-->
+
+{% load static %}
+<style>
+            .main{
+            margin-top: 50px;
+        }
+
+        .nav-menu-icon{
+  font-size: 1.5em;
+  margin: 0 0.5em 0 0;
+  border: 0;
 }
 
-body {
-    background-color: rgb(21, 32, 43);
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    scroll-behavior: smooth;
-
-}
-
-#fixedarrow {
-    position: fixed;
-    bottom: 10px;
-    right: 20px;
-    border: 1px solid rgb(155, 157, 160);
+.avatar{
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    padding: 15px;
-    font-size: 20px;
-    cursor: pointer;
+}
+.hide-border{
+    border: 0;
+    outline: 0;
 }
 
-
-a,
-li {
-    text-decoration: none;
-    list-style: none;
-    color: white;
-}
-
-li:hover {
-    color: rgb(36, 86, 136);
-    background-color: rgb(36, 86, 136);
-    opacity: 0.9;
-    border-radius: 30px;
-    width: 200px;
-    cursor: pointer;
-    text-align: center;
-}
-
-#twittericon {
-    color: white;
-    font-size: 25px;
-    margin-left: 75px;
-}
-
-#twittericon:hover {
-    color: royalblue;
-}
-
-#icons {
-    margin-right: 10px;
-    font-size: 25px;
-}
-
-.leftverticalmenu {
-    height: 100vh;
-    width: 300px;
-    text-align: left;
-    line-height: 60px;
-    font-size: 20px;
-    border-right: 1px solid rgb(155, 157, 160);
-    position: fixed;
+.navbar-toggler{
+    border: 0;
+    outline: 0;
 
 }
+</style>
 
-ul {
-    margin: auto;
-    width: 50%;
-    margin-top: -10px;
+<nav class="navbar navbar-dark bg-dark fixed-top px-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">StudyMate</a>
 
-}
+      <form class="nav-link d-none d-md-flex w-50" role="search">
+        <input class="form-control text-light bg-dark me-2 search-background" name='q' type="search"
+        placeholder="Search rooms" aria-label="Search">
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
 
-.profileimage {
-    border-radius: 50%;
-    border: 2px solid rgb(43, 43, 223);
-    width: 25px;
-    margin-right: 10px;
-    margin-bottom: -5px;
-}
-
-figure {
-    border-radius: 50px;
-    height: 55px;
-    font-weight: bold;
-    background-color: rgb(29, 161, 242);
-    width: 200px;
-    text-align: center;
-    margin: auto;
-    font-size: 15px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-figure:hover {
-    opacity: 0.9;
-}
-
-/* MIDDLE AND RIGHT CONTAINERS */
-
-.flexcontainer {
-    position: absolute;
-    left: 300px;
-}
-
-.middlecontainer {
-    width: 700px;
-    border-right: 1px solid rgb(155, 157, 160);
-    height: 100%;
-
-}
-
-.headsec {
-    display: flex;
-    margin-top: 10px;
-
-}
-
-#fa-arrow-left {
-    color: blue;
-    filter: brightness(70%);
-    font-size: 20px;
-    margin: 10px 20px 0 20px;
-    cursor: pointer;
-}
-
-span {
-    filter: brightness(50%)
-}
-
-.headerprofileimage {
-    margin-top: 10px;
-    position: relative;
-
-
-}
-
-#headerimage {
-    width: 700px;
-  height:200px;
-}
-
-#profilepic {
-    border-radius: 50%;
-    width: 150px;
-  height:130px;
-    position: absolute;
-    top: 130px;
-    left: 20px;
-    border: 4px solid rgb(21, 32, 43);
-}
-
-.editprofile {
-    margin-top: 5px;
-    float: right;
-    border: 1px solid rgb(155, 157, 160);
-    border-radius: 20px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.bio {
-    margin-top: 55px;
-    margin-left: 20px;
-    line-height: 40px;
-    font-size: 15px;
-}
-
-.handle {
-    line-height: 19px;
-    margin-bottom: 10px;
-}
-
-.followers {
-    margin-right: 15px;
-}
-
-.nawa {
-    display: flex;
-}
-
-.heading {
-    display: flex;
-    justify-content: space-around;
-    border-bottom: 1px solid white;
-    margin-top: 10px;
-    font-weight: bold;
-
-}
-
-.heading p {
-    display: block;
-    cursor: pointer;
-    margin-bottom: 10px;
-}
-
-.heading p:hover {
-    background: royalblue;
-}
-
-.avi {
-    width: 50px;
-    border-radius: 50%;
-    height: 50px;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-.mytweets {
-    display: flex;
-    margin: 15px 0 15px 0;
-    margin-bottom: 800px;
-}
-
-.tweetcontent {
-    margin-top: 5px;
-}
-
-.retweeticons {
-    margin-top: 5px;
-    margin-left: -10px;
-    display: inline-flex;
-    justify-content: space-evenly;
-}
-
-
-/* RIGHT VERTICAL CONTAINER */
-
-
-.searchbar {
-    display: inline-flex;
-    margin: 10px 0 0 25px;
-    border: 1px solid rgb(155, 157, 160);
-    padding: 13px;
-    border-radius: 20px;
-    width: 300px;
-}
-
-#searchbox {
-    border: none;
-    background-color: transparent;
-    color: rgb(155, 157, 160);
-}
-
-.searchicon {
-    color: royalblue;
-    margin-right: 15px;
-}
-
-.twittermedia {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid rgb(155, 157, 160);
-    border-radius: 20px;
-    margin: 10px 0 0 25px;
-    width: 300px;
-}
-
-.twittermedia img {
-    width: 100px;
-    height: 100px;
-    border-radius: 20px;
-}
-
-.nigeriatrends {
-    margin: 30px 0 0 25px;
-    width: 300px;
-    border: 1px solid rgb(155, 157, 160);
-    border-radius: 10px;
-    padding: 10px 0;
-}
-
-#fa-cog {
-    color: royalblue;
-    margin-top: 5px;
-    cursor: pointer;
-    font-size: 25px;
-}
-
-.headertrends {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid rgb(155, 157, 160);
-    padding: 10px;
-}
-
-.trending {
-    filter: brightness(50%)
-}
-
-.trenditem {
-    border-bottom: 1px solid rgb(155, 157, 160);
-    padding: 10px;
-    line-height: 22px;
-}
-
-.hashtag {
-    font-weight: bolder;
-}
-
-    </style>
-
-
-    <div class="flexcontainer">
-        <div class="middlecontainer">
-
-            <section class="twitterprofile">
-                <div class="headerprofileimage">
-                    <img src="https://res.cloudinary.com/dowrygm9b/image/upload/v1570267399/laptop-3174729_yiprzu.jpg" alt="header" id="headerimage">
-                    <img src="https://res.cloudinary.com/dowrygm9b/image/upload/v1570267399/laptop-3174729_yiprzu.jpg" alt="profile pic" id="profilepic">
-                    <div class="editprofile">Edit Profile</div>
-                </div>
-                <div class="bio">
-                    <div class="handle">
-                        <h3>Soy Segun</h3>
-                        <span>@segun_OS</span>
-                    </div>
-                    <p>Business Administration Student |</p>
-                    <p>Front-end web developer |</p>
-                    <p>Barça fan |</p>
-                    <br> <span><i class="fa fa-calendar"></i> Joined May 2013</span>
-                    <div class="nawa">
-                        <div class="followers"> 4 <span>room created</span></div>
-                        <div>14<span> group membership</span></div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="tweets">
-                <div class="heading">
-                    <p>Tweets</p>
-                    <p>Tweets and Replies</p>
-                    <p>Media</p>
-                    <p>Likes</p>
-                </div>
-            </section>
+      <button class="navbar-toggler hide-border" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
+        <img class="avatar" src="../static/images/my_picc.jpg" alt="">
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">StudyMate</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-
-
+        <div class="offcanvas-body">
+            <form class="d-flex mt-3 d-lg-none d-block nav-link" role="search">
+                <input class="form-control text-light bg-dark me-2 search-background" name='q' type="search"
+                placeholder="Search rooms" aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+              </form>
+              <br class="d-lg-none d-block">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">View profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Edit profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href=""> Bookmarks</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Logout</a>
+            </li>
+        </ul>
+        </div>
+      </div>
     </div>
+  </nav>
 
-    <!-- <script>
-alert('MY TWITTER PROFILE CLONE');
-</script> -->
-</body>
 
-</html>
+<nav class="navbar bg-dark mb-4 p-2 navbar-expand-sm">
+    <div class="container-fluid container">
+        <a href="/" class="navbar-brand text-light logo">StudyMate</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <!--             <span class="text-light navbar-toggler-icon"></span>
+ --> <span class="text-light nav-menu-icon"><i class="bi bi-list"></i></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <form class="nav-link" action="{% url 'home' %}" method="GET" class="d-flex" role="search">
+                        <input class="form-control text-light bg-dark me-2 search-background" name='q' type="search"
+                            placeholder="Search rooms" aria-label="Search">
+                    </form>
+                </li>
+                <li class="nav-item">
+                    <div class="d-flex text-center nav-link">
+                        {% if request.user.is_authenticated %}
+                        <div class="m-auto mx-3 text-light">Hello, {{request.user.first_name}}</div>
+                        <div>
+                            <div class="dropdown">
+                                <span class="m-2">
+                                    {% if request.user.profile.avatar %}
+                                    <a href="{% url 'user-profile' request.user.id %}">
+                                        <img src="{{request.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
+                                    </a>
+                                    {% else %}
+
+                                    <a href="{% url 'user-profile' message.user.id %}">
+                                        <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
+                                    </a>
+                                    {% endif %}
+                                </span>
+                                <a class=" " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span><i class="bi bi-chevron-down pt-2"></i></span>
+                                </a>
+
+                                <ul class="dropdown-menu bg-secondary">
+                                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit profile</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
