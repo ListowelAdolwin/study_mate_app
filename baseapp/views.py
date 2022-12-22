@@ -68,7 +68,7 @@ def registerPage(request):
                 user = user,
                 first_name = user.first_name,
                 last_name = user.last_name,
-                bio = ""
+                bio = "",
 
             )
             messages.success(request, "Congratulation, registration successful")
@@ -286,4 +286,3 @@ def bookmarks(request, pk):
     }
 
     return render(request, 'baseapp/bookmarks.html', context)
-
