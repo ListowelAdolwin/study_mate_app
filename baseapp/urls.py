@@ -18,7 +18,8 @@ urlpatterns = [
     path('update_profile/', views.edit_profile, name='update_profile'),
     path('join_room/<str:pk>/', views.join_room, name='join_room'),
     path('save/<str:pk>/', views.save, name='save'),
-    path('bookmarks/<str:pk>/', views.bookmarks, name='bookmarks')
+    path('bookmarks/<str:pk>/', views.bookmarks, name='bookmarks'),
+    path('likes<int:pk>/', views.likes, name='likes'),
 
 
 
