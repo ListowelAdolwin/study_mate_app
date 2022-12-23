@@ -96,7 +96,6 @@ body {
   border-radius: 15px;
   padding: 8px;
   cursor: pointer;
-  font-weight: bold;
   margin-right: 10px;
 }
 
@@ -343,6 +342,7 @@ body {
     padding: 10px;
     margin: auto;
     color: white;
+    padding-bottom: 20px;
   }
 
   .center-form input,
@@ -520,15 +520,16 @@ body {
   }
 
   /** CREATE ROOM **/
-
+/*
   .top-container {
     width: 550px;
+    width: 41%;
     height: 50px;
     background-color: rgb(54, 162, 162);
     border-radius: 20px 20px 0 0;
     margin: auto;
     display: flex;
-  }
+  } */
 
   .back-icon {
     margin: 10px -40px 20px 20px;
@@ -545,13 +546,14 @@ body {
     margin-bottom: 5px;
   }
 
-  .form-container {
+/*   .form-container {
     width: 550px;
+    width: 41%;
     height: 700px;
     background-color: darkslategray;
     margin: auto;
     border-radius: 0 0 20px 20px;
-  }
+  } */
 
   /*** Login **/
   .top-container-login {
@@ -594,16 +596,21 @@ body {
   /***Login Ends ***/
   .top-container {
     width: 300px;
+    width: 85%;
     height: 40px;
+    height: auto;
     background-color: rgb(54, 162, 162);
     border-radius: 10px 10px 0 0;
     margin: auto;
     display: flex;
   }
 
+
   .form-container {
     width: 300px;
-    height: 600px;
+    width: 85%;
+    height: 700px;
+    height: min-content;
     background-color: darkslategray;
     margin: auto;
     border-radius: 0 0 10px 10px;
@@ -611,7 +618,9 @@ body {
 
   .center-form {
     width: 200px;
+    width: 85%;
     height: 200px;
+    height: auto;
     padding: 7px;
     margin: auto;
     color: white;
@@ -622,6 +631,7 @@ body {
   textarea {
     display: block;
     width: 200px;
+    width: 100%;
     border-radius: 5px;
     border: 0px;
     font-size: 12px;
@@ -733,7 +743,6 @@ body {
   border-radius: 13px;
   padding: 5px;
   cursor: pointer;
-  font-weight: bold;
   margin-right: 10px;
 }
 
