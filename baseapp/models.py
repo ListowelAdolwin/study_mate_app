@@ -36,9 +36,10 @@ class Message(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     body = models.TextField()
-    image = models.FileField(upload_to='profile_images', null=True, blank=True)
+    #image = models.FileField(upload_to='profile_images', null=True, blank=True)
     created = models.DateField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.body[:50]
