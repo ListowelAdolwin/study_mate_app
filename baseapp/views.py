@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse
 from django.db.models import Q # This allows the use of |, &&
-from .models import Room, Topic, Message, Profile
+from .models import Room, Topic, Message, Profile, LikeDislike
 from .forms import RoomForm, UserProfileForm, ProfileForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -133,7 +133,7 @@ def room(request, pk):
             user=request.user,
             room=room,
             body=request.POST.get('body'),
-            image = request.POST.get('image') if request.POST.get('image') else None,
+            #image = request.POST.get('image') if request.POST.get('image') else None,
         )
 
         room.participants.add(request.user)
@@ -286,3 +286,73 @@ def bookmarks(request, pk):
     }
 
     return render(request, 'baseapp/bookmarks.html', context)
+
+def likes(request, pk):
+    message = Message.objects.get(id=pk)
+
+    try:
+        preference = LikeDislike.objects.get(user=request.user, post=message)
+
+        if preference.value == 0:
+            message.likes += 1
+            preference.value = 1
+
+        else:
+            if preference.value == 1:
+                message.likes -= 1
+                preference.value = 0
+
+            else:
+                message.dislikes -= 1
+                message.likes += 1
+                preference.value = 1
+
+        message.save()
+        preference.save()
+
+    except LikeDislike.DoesNotExist:
+        new_preference = LikeDislike()
+        new_preference.user= request.user
+        new_preference.post= message
+        new_preference.value= 1
+        message.likes += 1
+
+        new_preference.save()
+        message.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+def dislike(request, pk):
+    message = Message.objects.get(id=pk)
+
+    try:
+        preference = LikeDislike.objects.get(user=request.user, post=message)
+
+        if preference.value == 0:
+            message.dislikes += 1
+            preference.value = 2
+
+        else:
+            if preference.value == 2:
+                message.dislikes -= 1
+                preference.value = 0
+
+            else:
+                message.likes -= 1
+                message.dislikes += 1
+                preference.value = 2
+
+        message.save()
+        preference.save()
+
+    except LikeDislike.DoesNotExist:
+        new_preference = LikeDislike()
+        new_preference.user= request.user
+        new_preference.post= message
+        new_preference.value= 2
+        message.dislikes += 1
+
+        new_preference.save()
+        message.save()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
