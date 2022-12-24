@@ -10,13 +10,15 @@
         background-color: #3f4156;
     }
 
+
+
 </style>
 
 {% load static %}
 
 <div class="room-wrapper mx-lg-1 row justify-content-between room-mobile-display">
-    <div class="col-9 mydiv p-5 card room-mobile-display">
-        <div>
+    <div class="col-9 mydiv p-lg-4 card room-mobile-display">
+        <div class="p-lg-3 pt-3">
             {% if rooms.host == request.user %}
             <div class="float-end">
                 <a href="{% url 'update_room' rooms.id %}"><span><i class="bi bi-pencil"></i></span></a>
@@ -53,48 +55,91 @@
 
         <div class="messages-wrapper bg-ark p-3">
             <h2>Conversation</h2>
+            <div class="tooltip">Hover over me
+            <span class="tooltiptext">Tooltip text</span>
+            </div>
             {% for message in room_messages %}
             <div>
 
-                <small>
+                <small class="">
                     {% if message.user.profile.avatar %}
                     <img src="{{message.user.profile.avatar.url}}" alt="Avatar" class="profile-pic">
                     {% else %}
                     <img class="profile-pic" src="{% static 'images/my.jpg' %}" alt="profile pic">
                     {% endif %}
-                    <a href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>
+                    <a class="ms-3" href="{% url 'user-profile' message.user.id %}">@{{message.user}}</a>
                     &nbsp;&nbsp; {{message.updated|timesince}} ago
                 </small>
                 <div class="message-body">
                     <p class="mt-1 ms-3">
                         {{message.body}}
                     </p>
-                    <div class="p-3">
+                    <div class="pb-1 ms-3 room-post-image">
                         {% if message.image %}
                         <a href="{{message.image.url}}"><img class="room-post-image" src="{{message.image.url}}"
                                 alt="Post"></a>
                         {% endif %}
                     </div>
-                    <div class="d-flex">
-                        {% if message.user == request.user %}
-                        <div class="save-tooltip">
-                            <a class="save-tooltip" href="{% url 'delete-message' message.id %}"><i
-                                    class="bi bi-trash ms-3"></i></a>
-                            <span class="tooltiptext ms-1">Delete</span>
-                        </div>
+                    <div class="ms-2">
+                        <span class="icon-tooltip">
+                            <a href="{% url 'save' message.id %}">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="Bookmark">
+                                      <path d="M17.6,21.945a1.483,1.483,0,0,1-1.01-.4l-4.251-3.9a.5.5,0,0,0-.68,0L7.409,21.545a1.5,1.5,0,0,1-2.516-1.1V4.57a2.5,2.5,0,0,1,2.5-2.5h9.214a2.5,2.5,0,0,1,2.5,2.5V20.442a1.481,1.481,0,0,1-.9,1.374A1.507,1.507,0,0,1,17.6,21.945ZM12,16.51a1.5,1.5,0,0,1,1.018.395l4.251,3.9a.5.5,0,0,0,.839-.368V4.57a1.5,1.5,0,0,0-1.5-1.5H7.393a1.5,1.5,0,0,0-1.5,1.5V20.442a.5.5,0,0,0,.839.368L10.983,16.9A1.5,1.5,0,0,1,12,16.51Z" fill="#A39292" class="fill-000000"/>
+                                    </g>
+                                  </svg>
+                               <!-- <small>save</small> -->
+                            </a>
+                            <small class="icon-tooltiptext">
+                                Save
+                            </small>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span class="icon-tooltip">
+                            <a href="{% url 'likes' message.id %}">
+                                <?xml version="1.0" ?>
+                                <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z "
+                                        fill="#A39292" class="fill-000000" />
+                                </svg>
+                                &nbsp;<small><span class="text-white">{{message.likes}}</span></small>
+                            </a>
+                            <small class="icon-tooltiptext">
+                                Upvote
+                            </small>
+                        </span>
+                         &nbsp;&nbsp;
+                        <span class="icon-tooltip">
+                            <a href="{% url 'dislike' message.id %}">
+                                <?xml version="1.0" ?>
+                                <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z" fill="#A39292" class="fill-000000"/></svg>
+                                &nbsp;<small><span class="text-white">{{message.dislikes}}</span></small>
+                            </a>
+                            <small class="icon-tooltiptext">
+                                Downvote
+                            </small>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span class="icon-tooltip">
+                            {% if message.user == request.user %}
+                            <a class="" href="{% url 'delete-message' message.id %}">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                <!--&nbsp;<small>delete</small>-->
+                            </a>
+                            <small class="icon-tooltiptext container">
+                                Delete
+                            </small>
+                        </span>
                         {% endif %}
-                        <div class="save-tooltip ms-2">
-                            <a class="save-tooltip" href="{% url 'save' message.id %}"><i
-                                    class="bi bi-bookmark"></i></a>
-                            <span class="tooltiptext ms-1">Save post</span>
-                        </div>
-
                     </div>
                 </div>
 
             </div>
             <hr>
+
             {% endfor %}
+
 
 
         </div>
@@ -106,10 +151,10 @@
                 {% csrf_token %}
                 <input class="" style="height:50px;font-size:12pt;" class="mobile-message-form" name="body" type="text"
                     placeholder="Write your message here">
-                <input type="file" name="image" id="image">
+            <!--    <input type="file" name="image" id="image">
                 <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
+                -->
             </form>
-
         </div>
         {% endif %}
     </div>
