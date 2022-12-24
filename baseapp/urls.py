@@ -20,6 +20,7 @@ urlpatterns = [
     path('save/<str:pk>/', views.save, name='save'),
     path('bookmarks/<str:pk>/', views.bookmarks, name='bookmarks'),
     path('likes<int:pk>/', views.likes, name='likes'),
+    path('dislike<int:pk>/', views.dislike, name='dislike'),
 
 
 
