@@ -40,6 +40,7 @@ class Message(models.Model):
     created = models.DateField(auto_now=True)
     updated = models.DateTimeField(auto_now_add=True)
     likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.body[:50]
@@ -56,3 +57,15 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class LikeDislike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Message, on_delete=models.CASCADE)
+    value = models.IntegerField(default=0)
+    date= models.DateTimeField(auto_now= True)
+
+    def __str__(self):
+        return str(self.user) + ':' + str(self.post) +':' + str(self.value)
+
+    class Meta:
+       unique_together = ("user", "post", "value")
