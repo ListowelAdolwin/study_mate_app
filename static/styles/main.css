@@ -31,16 +31,59 @@ body {
   position: fixed;
   bottom: 0%;
   left: 1%;
-  width: 100%;
-}
-.write-message-form input {
   width: 73%;
-  outline: none;
+  background-color:#2d2d39;
+}
+
+.msg-bottom{
+  display: grid;
+  padding: 10px;
+  grid-template-columns: 1fr 6fr 1fr;
+  align-items: center;
+  text-align: center;
+
+}
+
+.write-message-input-group-append button{
   border: 0;
-  padding: 20px;
-  background-color: #2d2d39;
+  outline: 0;
+  background: transparent;
+  font-size: 18px;
+}
+
+.write-message-input-group-append{
+  background: transparent;
+}
+
+.write-message-input-group-append .fa{
+  color: aqua;
+}
+
+.write-message-form-control{
+  width: 100%;
+  padding: 10px;
+  border: none !important;
+  border-radius: 10px;
+  outline: none;
+  background-color: #46464f;
   color: white;
 }
+
+.write-message-form-control:focus{
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 10px;
+  background-color: #46464f;
+  color: white;
+}
+
+
+.bottom-icons{
+  font-size: 22px;
+}
+
+
+
 
 .room-post-image{
   width: 30em;
@@ -48,8 +91,42 @@ body {
 }
 
 .message-body {
-  margin-left: 50px;
+  margin-left: 60px;
 }
+
+.message-body a{
+  color: #A39292;
+  padding: 5px;
+
+}
+
+/*Icons Tooltip**/
+.icon-tooltip {
+  position: relative;
+
+}
+
+.icon-tooltip .icon-tooltiptext {
+visibility: hidden;
+width:80px ;
+background-color: #51546e;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 5px 0;
+
+/* Position the tooltip */
+position: absolute;
+z-index: 1;
+top: 100%;
+right: -5%;
+margin: 8px 0 0 0px;
+}
+
+.icon-tooltip:hover .icon-tooltiptext {
+visibility: visible;
+}
+
 
 /** ROOM ***/
 .tooltiptext{
@@ -346,7 +423,7 @@ body {
   }
 
   .center-form input,
-  textarea {
+  .center-form textarea {
     display: block;
     width: 100%;
     border-radius: 7px;
@@ -358,7 +435,7 @@ body {
   }
 
   .center-form input,
-  textarea {
+  .center-form textarea {
     background-color: #373745;
   }
 
@@ -395,6 +472,11 @@ body {
     height: auto;
     background-color: #2f8968;
     margin: auto;
+  }
+
+  .messges-wrapper{
+    background-color: #33333d;
+    width: 100%;
   }
   /*** CONFIRM DELETE PAGE ENDS ***/
 }
@@ -503,6 +585,11 @@ body {
     font-size: 15px;
   }
 
+  .room-post-image{
+    width: 100%;
+    height: auto;
+  }
+
   /** UPDATE ROOM */
 
   .update-room-form input {
@@ -520,17 +607,6 @@ body {
   }
 
   /** CREATE ROOM **/
-/*
-  .top-container {
-    width: 550px;
-    width: 41%;
-    height: 50px;
-    background-color: rgb(54, 162, 162);
-    border-radius: 20px 20px 0 0;
-    margin: auto;
-    display: flex;
-  } */
-
   .back-icon {
     margin: 10px -40px 20px 20px;
     font-size: 22px;
@@ -545,15 +621,6 @@ body {
   .center-form label {
     margin-bottom: 5px;
   }
-
-/*   .form-container {
-    width: 550px;
-    width: 41%;
-    height: 700px;
-    background-color: darkslategray;
-    margin: auto;
-    border-radius: 0 0 20px 20px;
-  } */
 
   /*** Login **/
   .top-container-login {
@@ -628,7 +695,7 @@ body {
   }
 
   .center-form input,
-  textarea {
+  .center-form textarea {
     display: block;
     width: 200px;
     width: 100%;
@@ -641,7 +708,7 @@ body {
   }
 
   .center-form input,
-  textarea {
+  .center-form textarea {
     background-color: #373745;
   }
 
