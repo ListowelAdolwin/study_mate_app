@@ -10,8 +10,6 @@
         background-color: #3f4156;
     }
 
-
-
 </style>
 
 {% load static %}
@@ -53,11 +51,8 @@
         <hr>
         <br>
 
-        <div class="messages-wrapper bg-ark p-3">
+        <div class="messages-wrapper p-3">
             <h2>Conversation</h2>
-            <div class="tooltip">Hover over me
-            <span class="tooltiptext">Tooltip text</span>
-            </div>
             {% for message in room_messages %}
             <div>
 
@@ -71,24 +66,25 @@
                     &nbsp;&nbsp; {{message.updated|timesince}} ago
                 </small>
                 <div class="message-body">
-                    <p class="mt-1 ms-3">
-                        {{message.body}}
+                    <p class="mt-1">
+                        {{message.body|linebreaks}}
                     </p>
-                    <div class="pb-1 ms-3 room-post-image">
+                    <div class="pb-1 room-post-image">
                         {% if message.image %}
                         <a href="{{message.image.url}}"><img class="room-post-image" src="{{message.image.url}}"
                                 alt="Post"></a>
                         {% endif %}
                     </div>
-                    <div class="ms-2">
+                    <div class="">
                         <span class="icon-tooltip">
                             <a href="{% url 'save' message.id %}">
-                            <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <g id="Bookmark">
-                                      <path d="M17.6,21.945a1.483,1.483,0,0,1-1.01-.4l-4.251-3.9a.5.5,0,0,0-.68,0L7.409,21.545a1.5,1.5,0,0,1-2.516-1.1V4.57a2.5,2.5,0,0,1,2.5-2.5h9.214a2.5,2.5,0,0,1,2.5,2.5V20.442a1.481,1.481,0,0,1-.9,1.374A1.507,1.507,0,0,1,17.6,21.945ZM12,16.51a1.5,1.5,0,0,1,1.018.395l4.251,3.9a.5.5,0,0,0,.839-.368V4.57a1.5,1.5,0,0,0-1.5-1.5H7.393a1.5,1.5,0,0,0-1.5,1.5V20.442a.5.5,0,0,0,.839.368L10.983,16.9A1.5,1.5,0,0,1,12,16.51Z" fill="#A39292" class="fill-000000"/>
+                                        <path
+                                            d="M17.6,21.945a1.483,1.483,0,0,1-1.01-.4l-4.251-3.9a.5.5,0,0,0-.68,0L7.409,21.545a1.5,1.5,0,0,1-2.516-1.1V4.57a2.5,2.5,0,0,1,2.5-2.5h9.214a2.5,2.5,0,0,1,2.5,2.5V20.442a1.481,1.481,0,0,1-.9,1.374A1.507,1.507,0,0,1,17.6,21.945ZM12,16.51a1.5,1.5,0,0,1,1.018.395l4.251,3.9a.5.5,0,0,0,.839-.368V4.57a1.5,1.5,0,0,0-1.5-1.5H7.393a1.5,1.5,0,0,0-1.5,1.5V20.442a.5.5,0,0,0,.839.368L10.983,16.9A1.5,1.5,0,0,1,12,16.51Z"
+                                            fill="#A39292" class="fill-000000" />
                                     </g>
-                                  </svg>
-                               <!-- <small>save</small> -->
+                                </svg>
                             </a>
                             <small class="icon-tooltiptext">
                                 Save
@@ -109,11 +105,16 @@
                                 Upvote
                             </small>
                         </span>
-                         &nbsp;&nbsp;
+                        &nbsp;&nbsp;
                         <span class="icon-tooltip">
                             <a href="{% url 'dislike' message.id %}">
                                 <?xml version="1.0" ?>
-                                <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z" fill="#A39292" class="fill-000000"/></svg>
+                                <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"
+                                        fill="#A39292" class="fill-000000" />
+                                </svg>
                                 &nbsp;<small><span class="text-white">{{message.dislikes}}</span></small>
                             </a>
                             <small class="icon-tooltiptext">
@@ -139,6 +140,11 @@
             <hr>
 
             {% endfor %}
+            <!-- Button trigger modal -->
+
+  <!-- Modal -->
+
+            <br><br><br><br>
 
 
 
@@ -147,16 +153,56 @@
         <!--WRITE MESSAGE-->
         {% if request.user.is_authenticated %}
         <div class="write-message-form">
-            <form action="" method="POST">
+            <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <input class="" style="height:50px;font-size:12pt;" class="mobile-message-form" name="body" type="text"
-                    placeholder="Write your message here">
-            <!--    <input type="file" name="image" id="image">
-                <button class="btn btn-primary" type="submit"><i class="bi bi-send-fill"></i></button>
-                -->
+                <div class="msg-bottom">
+                    <span class="bottom-icons write-message-input-group-append">
+                       <!--  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                        </button> -->
+                        <label class="" style="cursor: pointer;">
+                            <i class="fa fa-image h5"></i><input type="file" style="display: none;" name="image" id="image">
+                        </label>
+                    </span>
+                    <span class="mt-1">
+                        <textarea class="write-message-form-control" name="body" rows="1"
+                            placeholder='Write your message'></textarea>
+                    </span>
+                    <span class="write-message-input-group-append">
+                        <button type="submit">
+                            <i class="fa fa-paper-plane"></i>
+                        </button>
+                    </span>
+                </div>
             </form>
+
         </div>
+        <!--UPLOAT IMAGE MODAL-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content  bg-dark">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                    <textarea class="write-message-form-control" name="body" rows="1"
+                            placeholder='Add your caption here'></textarea>
+                    <label class="py-2 btn btn-success">
+                        <i class="fa fa-image h4"></i><input type="file" style="display: none;" name="image" id="image">
+                    </label>
+                    <button type="submit" class="btn btn-primary mt-1">Post</button>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--MODAL ENDS-->
         {% endif %}
+
+
     </div>
 
     <!--PARTICIPANTS-->
