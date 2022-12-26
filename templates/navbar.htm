@@ -28,13 +28,13 @@
         <button class="btn btn-success" type="submit">Search</button>
       </form>
 
+      {% if request.user.is_authenticated %}
       <button class="navbar-toggler hide-border" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
-        {% if request.user.is_authenticated %}
         <img class="profile-pic" src="{{request.user.profile.avatar.url}}" alt="Avatar">
-        {% else %}
-        <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
-        {% endif %}
       </button>
+      {% else %}
+      <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
+      {% endif %}
       <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel"><a href="/" class="navbar-brand text-light logo">StudyMate</a></h5>
