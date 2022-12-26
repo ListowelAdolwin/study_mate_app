@@ -151,7 +151,6 @@
         </div>
 
         <!--WRITE MESSAGE-->
-        {% if request.user.is_authenticated %}
         <div class="write-message-form">
             <form action="" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -200,7 +199,6 @@
             </div>
           </div>
           <!--MODAL ENDS-->
-        {% endif %}
 
 
     </div>
@@ -210,7 +208,10 @@
         <h2>Participants</h2>
         <div>
             <small>
-                {{participants.count}} joined
+                <strong class="text-white">{{participants.count}}</strong> joined
+            </small>
+            <small class="float-end">
+                <a href="{% url 'leave-room' request.user.id %}">Leave room</a>
             </small>
         </div>
         <hr>
