@@ -129,11 +129,13 @@ def room(request, pk):
     partcipants = room.participants.all()
 
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
         message = Message.objects.create(
             user=request.user,
             room=room,
             body=request.POST.get('body'),
-            #image = request.POST.get('image') if request.POST.get('image') else None,
+            image = request.FILES.get('image')
         )
 
         room.participants.add(request.user)
@@ -279,14 +281,16 @@ def save(request, pk):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+@login_required(login_url='login')
 def bookmarks(request, pk):
-    bookmarks = request.user.profile.bookmarks.all()
+    bookmarks = request.user.profile.bookmarks.all().order_by('-updated')
     context = {
             'bookmarks':bookmarks,
     }
 
     return render(request, 'baseapp/bookmarks.html', context)
 
+@login_required(login_url='login')
 def likes(request, pk):
     message = Message.objects.get(id=pk)
 
@@ -322,6 +326,7 @@ def likes(request, pk):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
+@login_required(login_url='login')
 def dislike(request, pk):
     message = Message.objects.get(id=pk)
 
