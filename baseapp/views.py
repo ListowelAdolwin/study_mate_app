@@ -128,6 +128,11 @@ def room(request, pk):
     room_messages = room.message_set.all().order_by('-updated')
     partcipants = room.participants.all()
 
+    if request.user in partcipants:
+        join_or_leave = 'leave'
+    else:
+        join_or_leave = 'join'
+
     if request.method == 'POST':
         if not request.user.is_authenticated:
             return redirect('login')
@@ -145,6 +150,7 @@ def room(request, pk):
         'rooms':room,
         'room_messages': room_messages,
         'participants': partcipants,
+        'join_or_leave':join_or_leave,
     }
     return render(request, 'baseapp/room.html', context)
 
@@ -213,6 +219,14 @@ def join_room(request, pk):
     room.participants.add(request.user)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+@login_required(login_url='login')
+def leave_room(request, pk):
+    room = Room.objects.get(id=pk)
+    room.participants.remove(request.user)
+    room.save()
+
+    return redirect('home')
 
 
 # DELETE ROOM
