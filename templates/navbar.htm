@@ -31,6 +31,7 @@
       {% if request.user.is_authenticated %}
       <button class="navbar-toggler hide-border" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar">
         <img class="profile-pic" src="{{request.user.profile.avatar.url}}" alt="Avatar">
+        <span><i class="bi bi-chevron-down"></i></span>
       </button>
       {% else %}
       <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
