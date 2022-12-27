@@ -43,9 +43,14 @@
             <p class="ms-2">
                 <span>
                     {{rooms.topic}}
-                    <span class="float-end">
-                        <a href="{% url 'join_room' rooms.id %}">Join</a>
-                    </span>
+                </span>
+                <span class="float-end">
+                    {% if join_or_leave == 'join' %}
+                    <a href="{% url 'join_room' rooms.id %}">Join</a>
+                    {% else %}
+                    <a href="{% url 'leave-room' rooms.id %}">Exit</a>
+                    {% endif %}
+                </span>
             </p>
         </div>
         <hr>
@@ -142,7 +147,7 @@
             {% endfor %}
             <!-- Button trigger modal -->
 
-  <!-- Modal -->
+            <!-- Modal -->
 
             <br><br><br><br>
 
@@ -156,11 +161,12 @@
                 {% csrf_token %}
                 <div class="msg-bottom">
                     <span class="bottom-icons write-message-input-group-append">
-                       <!--  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <!--  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             <i class="fa fa-plus-circle" aria-hidden="true"></i>
                         </button> -->
                         <label class="" style="cursor: pointer;">
-                            <i class="fa fa-image h5"></i><input type="file" style="display: none;" name="image" id="image">
+                            <i class="fa fa-image h5"></i><input type="file" style="display: none;" name="image"
+                                id="image">
                         </label>
                     </span>
                     <span class="mt-1">
@@ -179,26 +185,27 @@
         <!--UPLOAT IMAGE MODAL-->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-              <div class="modal-content  bg-dark">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content  bg-dark">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Upload image</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <textarea class="write-message-form-control" name="body" rows="1"
+                                placeholder='Add your caption here'></textarea>
+                            <label class="py-2 btn btn-success">
+                                <i class="fa fa-image h4"></i><input type="file" style="display: none;" name="image"
+                                    id="image">
+                            </label>
+                            <button type="submit" class="btn btn-primary mt-1">Post</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form action="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                    <textarea class="write-message-form-control" name="body" rows="1"
-                            placeholder='Add your caption here'></textarea>
-                    <label class="py-2 btn btn-success">
-                        <i class="fa fa-image h4"></i><input type="file" style="display: none;" name="image" id="image">
-                    </label>
-                    <button type="submit" class="btn btn-primary mt-1">Post</button>
-                </form>
-                </div>
-              </div>
             </div>
-          </div>
-          <!--MODAL ENDS-->
+        </div>
+        <!--MODAL ENDS-->
 
 
     </div>
@@ -209,9 +216,6 @@
         <div>
             <small>
                 <strong class="text-white">{{participants.count}}</strong> joined
-            </small>
-            <small class="float-end">
-                <a href="{% url 'leave-room' request.user.id %}">Leave room</a>
             </small>
         </div>
         <hr>
