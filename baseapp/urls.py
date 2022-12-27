@@ -17,6 +17,7 @@ urlpatterns = [
     path('profile/<str:pk>/', views.userProfile, name='user-profile'),
     path('update_profile/', views.edit_profile, name='update_profile'),
     path('join_room/<str:pk>/', views.join_room, name='join_room'),
+    path('leave-room/<str:pk>/', views.leave_room, name='leave-room'),
     path('save/<str:pk>/', views.save, name='save'),
     path('bookmarks/<str:pk>/', views.bookmarks, name='bookmarks'),
     path('likes<int:pk>/', views.likes, name='likes'),
