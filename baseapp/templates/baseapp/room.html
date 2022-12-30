@@ -58,6 +58,7 @@
 
         <div class="messages-wrapper p-3">
             <h2>Conversation</h2>
+            <button onclick="myFunction()">Click me!</button>
             {% for message in room_messages %}
             <div>
 
@@ -97,7 +98,7 @@
                         </span>
                         &nbsp;&nbsp;
                         <span class="icon-tooltip">
-                            <a href="{% url 'likes' message.id %}">
+                            <a id="like-button" href="{% url 'likes' message.id %}">
                                 <?xml version="1.0" ?>
                                 <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -112,7 +113,7 @@
                         </span>
                         &nbsp;&nbsp;
                         <span class="icon-tooltip">
-                            <a href="{% url 'dislike' message.id %}">
+                            <a id="dislike-button" href="{% url 'dislike' message.id %}">
                                 <?xml version="1.0" ?>
                                 <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -238,4 +239,52 @@
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
+<script>
+$(document).ready(function () {
+    $('.like-btn').click(function (e) {
+      e.preventDefault();
+
+      var url = $(this).attr('href');
+      myFunction();
+
+      $.ajax({
+        url: url,
+        type: "POST",
+        success: function (data) {},
+      });
+    });
+  });
+
+  function myFunction() {
+    alert("Hello from a static file!");
+  }
+
+
+  <!-- template for the page that displays the like and dislike buttons -->
+
+  $('#like-button').click(function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/like/',
+      type: 'POST',
+      success: function(data) {
+        $('#like-button').text('Like (' + data.count + ')');
+      }
+    });
+  });
+
+  $('#dislike-button').click(function(event) {
+    event.preventDefault();
+    $.ajax({
+      url: '/dislike/',
+      type: 'GET',
+      success: function(data) {
+        $('#dislike-button').text('Dislike (' + data.count + ')');
+      }
+    });
+  });
+
+
+</script>
+
 {% endblock content %}
