@@ -83,7 +83,7 @@
                     </div>
                     <div class="">
                         <span class="icon-tooltip">
-                            <a href="{% url 'save' message.id %}">
+                            <a class="save-button" href="{% url 'save' message.id %}">
                                 <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <g id="Bookmark">
                                         <path
@@ -98,14 +98,14 @@
                         </span>
                         &nbsp;&nbsp;
                         <span class="icon-tooltip">
-                            <a id="like-button" href="{% url 'likes' message.id %}">
+                            <a like_id = "{{message.id}}" class="like-button" href="{% url 'likes' message.id %}">
                                 <?xml version="1.0" ?>
                                 <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z "
                                         fill="#A39292" class="fill-000000" />
                                 </svg>
-                                &nbsp;<small><span class="text-white">{{message.likes}}</span></small>
+                                &nbsp;<small><span id="like-button{{message.id}}" class="text-white">{{message.likes}}</span></small>
                             </a>
                             <small class="icon-tooltiptext">
                                 Upvote
@@ -113,7 +113,7 @@
                         </span>
                         &nbsp;&nbsp;
                         <span class="icon-tooltip">
-                            <a id="dislike-button" href="{% url 'dislike' message.id %}">
+                            <a  dislike_id = "{{message.id}}" class="dislike-button" href="{% url 'dislike' message.id %}">
                                 <?xml version="1.0" ?>
                                 <?xml version="1.0" ?><svg height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -121,7 +121,7 @@
                                         d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"
                                         fill="#A39292" class="fill-000000" />
                                 </svg>
-                                &nbsp;<small><span class="text-white">{{message.dislikes}}</span></small>
+                                &nbsp;<small><span id="dislike-button{{message.id}}" class="text-white">{{message.dislikes}}</span></small>
                             </a>
                             <small class="icon-tooltiptext">
                                 Downvote
@@ -239,7 +239,97 @@
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 </script>
+
+{% endblock content %}
+
+{% block scripts %}
 <script>
+$(document).ready(function () {
+ $('.like-button').click(function(event) {
+    event.preventDefault();
+    var url = $(this).attr('href');
+    id = $(this).attr('like_id');
+
+    like_id = 'like-button'+id;
+    dislike_id = 'dislike-button'+id;
+
+    //alert(idd);
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function(data) {
+        $(`#${like_id}`).empty();
+        $(`#${like_id}`).text(data.like_count);
+
+        $(`#${dislike_id}`).empty();
+        $(`#${dislike_id}`).text(data.dislike_count);
+
+      },
+      error:function(data) {
+        $('#like-button').append('error');
+
+      },
+    });
+  });
+
+
+  $('.dislike-button').click(function(event) {
+    event.preventDefault();
+    var url = $(this).attr('href');
+    id = $(this).attr('dislike_id');
+    dislike_id = 'dislike-button'+id;
+    like_id = 'like-button'+id
+
+    //alert(idd);
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function(data) {
+        $(`#${dislike_id}`).empty();
+        $(`#${dislike_id}`).text(data.dislike_count);
+
+        $(`#${like_id}`).empty();
+        $(`#${like_id}`).text(data.like_count);
+
+      },
+      error:function(data) {
+        alert("likes: " + data.dislike_count);
+        $('#like-button').append(data.dislike_count);
+        $('#like-button').append('error');
+
+      },
+    });
+  });
+
+
+  $('.save-button').click(function(event) {
+    event.preventDefault();
+    var url = $(this).attr('href');
+
+    //alert(idd);
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      success: function(data) {
+        alert("Message successfully saved. Check it later in you bookmarks!")
+      },
+      error:function(data) {
+        alert("An error occured while saving")
+
+      },
+    });
+
+});
+
+});
+
+
+
+
+/*
 $(document).ready(function () {
     $('.like-btn').click(function (e) {
       e.preventDefault();
@@ -258,10 +348,8 @@ $(document).ready(function () {
   function myFunction() {
     alert("Hello from a static file!");
   }
-
-
-  <!-- template for the page that displays the like and dislike buttons -->
-
+ */
+/*
   $('#like-button').click(function(event) {
     event.preventDefault();
     $.ajax({
@@ -282,9 +370,8 @@ $(document).ready(function () {
         $('#dislike-button').text('Dislike (' + data.count + ')');
       }
     });
-  });
+  }); */
 
 
 </script>
-
-{% endblock content %}
+{% endblock scripts %}
