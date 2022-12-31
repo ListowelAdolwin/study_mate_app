@@ -1,4 +1,4 @@
-$(document).ready(function () {
+/* $(document).ready(function () {
   $('.like-btn').click(function (e) {
     e.preventDefault();
 
@@ -16,3 +16,4 @@ $(document).ready(function () {
 function myFunction() {
   alert("Hello from a static file!");
 }
+ */
