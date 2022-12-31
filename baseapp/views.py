@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Q # This allows the use of |, &&
 from .models import Room, Topic, Message, Profile, LikeDislike
 from .forms import RoomForm, UserProfileForm, ProfileForm
@@ -307,6 +307,7 @@ def bookmarks(request, pk):
 @login_required(login_url='login')
 def likes(request, pk):
     message = Message.objects.get(id=pk)
+    objectt = message
 
     try:
         preference = LikeDislike.objects.get(user=request.user, post=message)
@@ -338,7 +339,14 @@ def likes(request, pk):
         new_preference.save()
         message.save()
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    dislike_count = message.dislikes
+    like_count = message.likes
+    context = {
+       'dislike_count':dislike_count,
+       'like_count':like_count,
+    }
+    return JsonResponse(context)
+    #return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 @login_required(login_url='login')
 def dislike(request, pk):
@@ -374,4 +382,10 @@ def dislike(request, pk):
         new_preference.save()
         message.save()
 
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+    dislike_count = message.dislikes
+    like_count = message.likes
+    context = {
+       'dislike_count':dislike_count,
+       'like_count':like_count,
+    }
+    return JsonResponse(context)
