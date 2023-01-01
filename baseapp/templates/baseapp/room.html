@@ -328,50 +328,5 @@ $(document).ready(function () {
 
 
 
-
-/*
-$(document).ready(function () {
-    $('.like-btn').click(function (e) {
-      e.preventDefault();
-
-      var url = $(this).attr('href');
-      myFunction();
-
-      $.ajax({
-        url: url,
-        type: "POST",
-        success: function (data) {},
-      });
-    });
-  });
-
-  function myFunction() {
-    alert("Hello from a static file!");
-  }
- */
-/*
-  $('#like-button').click(function(event) {
-    event.preventDefault();
-    $.ajax({
-      url: '/like/',
-      type: 'POST',
-      success: function(data) {
-        $('#like-button').text('Like (' + data.count + ')');
-      }
-    });
-  });
-
-  $('#dislike-button').click(function(event) {
-    event.preventDefault();
-    $.ajax({
-      url: '/dislike/',
-      type: 'GET',
-      success: function(data) {
-        $('#dislike-button').text('Dislike (' + data.count + ')');
-      }
-    });
-  }); */
-
-
 </script>
 {% endblock scripts %}
