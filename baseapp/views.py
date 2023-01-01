@@ -341,9 +341,11 @@ def likes(request, pk):
 
     dislike_count = message.dislikes
     like_count = message.likes
+    det = like_count - dislike_count
     context = {
        'dislike_count':dislike_count,
        'like_count':like_count,
+       'det':det,
     }
     return JsonResponse(context)
     #return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
