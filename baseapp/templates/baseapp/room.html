@@ -10,12 +10,17 @@
         background-color: #3f4156;
     }
 
+    .dark-mode {
+  background-color: rgb(214, 206, 206);
+  color: white;
+}
+
 </style>
 
 {% load static %}
 
 <div class="room-wrapper mx-lg-1 row justify-content-between room-mobile-display">
-    <div class="col-9 mydiv p-lg-4 card room-mobile-display">
+    <div class="col-9 mydiv p-lg-4 room-mobile-display">
         <div class="p-lg-3 pt-3">
             {% if rooms.host == request.user %}
             <div class="float-end">
@@ -58,7 +63,6 @@
 
         <div class="messages-wrapper p-3">
             <h2>Conversation</h2>
-            <button onclick="myFunction()">Click me!</button>
             {% for message in room_messages %}
             <div>
 
@@ -83,14 +87,8 @@
                     </div>
                     <div class="">
                         <span class="icon-tooltip">
-                            <a class="save-button" href="{% url 'save' message.id %}">
-                                <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <g id="Bookmark">
-                                        <path
-                                            d="M17.6,21.945a1.483,1.483,0,0,1-1.01-.4l-4.251-3.9a.5.5,0,0,0-.68,0L7.409,21.545a1.5,1.5,0,0,1-2.516-1.1V4.57a2.5,2.5,0,0,1,2.5-2.5h9.214a2.5,2.5,0,0,1,2.5,2.5V20.442a1.481,1.481,0,0,1-.9,1.374A1.507,1.507,0,0,1,17.6,21.945ZM12,16.51a1.5,1.5,0,0,1,1.018.395l4.251,3.9a.5.5,0,0,0,.839-.368V4.57a1.5,1.5,0,0,0-1.5-1.5H7.393a1.5,1.5,0,0,0-1.5,1.5V20.442a.5.5,0,0,0,.839.368L10.983,16.9A1.5,1.5,0,0,1,12,16.51Z"
-                                            fill="#A39292" class="fill-000000" />
-                                    </g>
-                                </svg>
+                            <a save_id="{{message.id}}" class="save-button" href="{% url 'save' message.id %}">
+                                <i id="bookmark{{message.id}}" class="fa fa-bookmark-o" aria-hidden="true"></i>
                             </a>
                             <small class="icon-tooltiptext">
                                 Save
@@ -105,7 +103,7 @@
                                         d="M12.781 2.375c-.381-.475-1.181-.475-1.562 0l-8 10A1.001 1.001 0 0 0 4 14h4v7a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-7h4a1.001 1.001 0 0 0 .781-1.625l-8-10zM15 12h-1v8h-4v-8H6.081L12 4.601 17.919 12H15z "
                                         fill="#A39292" class="fill-000000" />
                                 </svg>
-                                &nbsp;<small><span id="like-button{{message.id}}" class="text-white">{{message.likes}}</span></small>
+            &nbsp;<small><span id="like-button{{message.id}}" class="text-white">{{message.likes}}</span></small>
                             </a>
                             <small class="icon-tooltiptext">
                                 Upvote
@@ -119,7 +117,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M20.901 10.566A1.001 1.001 0 0 0 20 10h-4V3a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v7H4a1.001 1.001 0 0 0-.781 1.625l8 10a1 1 0 0 0 1.562 0l8-10c.24-.301.286-.712.12-1.059zM12 19.399 6.081 12H10V4h4v8h3.919L12 19.399z"
-                                        fill="#A39292" class="fill-000000" />
+                                        fill="#A39292"class="fill-000000" />
                                 </svg>
                                 &nbsp;<small><span id="dislike-button{{message.id}}" class="text-white">{{message.dislikes}}</span></small>
                             </a>
@@ -307,6 +305,9 @@ $(document).ready(function () {
   $('.save-button').click(function(event) {
     event.preventDefault();
     var url = $(this).attr('href');
+    id = $(this).attr('save_id');
+
+    save_id = 'bookmark'+id;
 
     //alert(idd);
 
@@ -314,7 +315,8 @@ $(document).ready(function () {
       url: url,
       type: 'GET',
       success: function(data) {
-        alert("Message successfully saved. Check it later in you bookmarks!")
+        $(`#${save_id}`).toggleClass('fa fa-bookmark-o fa fa-bookmark');
+        //alert("Message successfully saved. Check it later in you bookmarks!")
       },
       error:function(data) {
         alert("An error occured while saving")
@@ -328,5 +330,12 @@ $(document).ready(function () {
 
 
 
+</script>
+
+<script>
+function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
 </script>
 {% endblock scripts %}
